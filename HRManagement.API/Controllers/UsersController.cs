@@ -17,10 +17,10 @@ namespace HRManagement.API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetUserById")]
-        //public async Task<ActionResult<UserDto>> GetUser(int id)
-        //{
-        //    return await Mediator.Send(new GetUserByIdQuery { Id = id });
-        //}
+        public async Task<ActionResult<UserDto>> GetUser(int id)
+        {
+            return await Mediator.Send(new GetUserByIdQuery { Id = id });
+        }
 
         // POST api/<UsersController>
         [HttpPost]
