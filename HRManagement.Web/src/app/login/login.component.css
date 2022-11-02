@@ -1,0 +1,26 @@
+
+body {
+  padding: 27vh 0 !important;
+  background: #e9e9e9 !important;
+}
+
+.form-signup {
+  margin: 0 auto;
+  max-width: 500px;
+  background-color: white;
+  padding: 25px;
+}
+
+  .form-signup h2 {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+.form-box {
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0,0, 0, 0.2), 0 5px 5px 0 rgba(0,0, 0, 0.24);
+}
+
+.register{
+    padding-top: 40px;
+}
