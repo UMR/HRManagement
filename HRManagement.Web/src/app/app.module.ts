@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
 import { NoticeComponent } from './notice/notice.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NoticeService } from './notice/notice.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [NoticeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

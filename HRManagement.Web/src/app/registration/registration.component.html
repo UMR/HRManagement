@@ -3,8 +3,7 @@
 <body>
   <div class="container">
     <form class="form-signup form-box">
-      <h2>Register</h2>
-      <p>Create your account or <input type="button" (click)="goToPage('login')" value="Login" /></p>
+      <h2>Sign up</h2>
       <div class="form-group mb-3">
         <div class="row">
           <div class="col-md-6">
@@ -24,14 +23,17 @@
       <div class="form-group mb-3">
         <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" />
       </div>
-      <div class="mb-3">
-        <label>
-          <input type="checkbox" name="" />
-          I accept the <a href="#">terms of use </a>& <a href="#">privacy policy</a>
-        </label>
-      </div>
+<!--<div class="mb-3">
+  <label>
+    <input type="checkbox" name="" />
+    I accept the <a href="#">terms of use </a>& <a href="#">privacy policy</a>
+  </label>
+</div>-->
       <div class="d-grid gap-2">
         <input type="button" class="btn btn-success btn-block" name="" value="Submit" />
+      </div>
+      <div class="login">
+        <p>Create your account or <a href="login">Login</a></p>
       </div>
     </form>
   </div>

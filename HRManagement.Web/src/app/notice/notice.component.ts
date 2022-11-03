@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NoticeService } from './notice.service'
 
 @Component({
   selector: 'app-notice',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoticeComponent implements OnInit {
 
-  constructor() { }
+  topHeadingDisplay: any = [];
+
+  constructor(private noticeService: NoticeService) { }
 
   ngOnInit(): void {
+    this.noticeService.topHeading().subscribe((result) => {
+      console.log(result);
+      this.topHeadingDisplay = result.articles;
+    })
   }
 
 }
