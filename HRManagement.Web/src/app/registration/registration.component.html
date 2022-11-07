@@ -1,36 +1,50 @@
 <app-header></app-header>
 
 <body>
-  <div class="container">
-    <form class="form-signup form-box">
+  <div class="container" >
+    <form class="form-signup form-box" [formGroup]="registerForm" (ngSubmit)="submitForm()">
       <h2>Sign up</h2>
       <div class="form-group mb-3">
         <div class="row">
           <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Enter First Name" name="firstname" />
+            <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstname" />
+            <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)">
+              <span class="error" *ngIf="firstname.errors?.required">*First name is required</span>
+              <span class="error" *ngIf="firstname.errors?.pattern">*Enter only characters</span>
+            </div>
           </div>
           <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname" />
+            <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastname" />
+            <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)">
+              <span class="error" *ngIf="lastname.errors?.required">*Last name is required</span>
+              <span class="error" *ngIf="lastname.errors?.pattern">*Enter only characters</span>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-group mb-3">
-        <input type="email" class="form-control" placeholder="Enter Email Address" name="email" />
+        <input type="email" class="form-control" placeholder="Enter Email Address" formControlName="emailId" />
+        <div *ngIf="emailId.invalid && (emailId.touched || emailId.dirty)">
+          <span class="error" *ngIf="emailId.errors?.required">*Email address is required</span>
+          <span class="error" *ngIf="emailId.errors?.email">*Enter a valid Email address</span>
+        </div>
       </div>
       <div class="form-group mb-3">
-        <input type="password" class="form-control" placeholder="Enter Password" name="password" />
+        <input type="password" class="form-control" placeholder="Enter Password" formControlName="password" />
+        <div *ngIf="password.invalid && (password.touched || password.dirty)">
+          <span class="error" *ngIf="password.errors?.required">*Password is required</span>
+          <span class="error" *ngIf="password.errors?.minlength">*Minimum 6 characters</span>
+        </div>
       </div>
       <div class="form-group mb-3">
-        <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" />
+        <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" />
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)">
+          <span class="error" *ngIf="confirmPassword.errors?.required">*Confirm Password is required</span>
+          <span class="error" *ngIf="confirmPassword.errors?.Mismatch">*Confirm Password didn't match</span>
+        </div>
       </div>
-<!--<div class="mb-3">
-  <label>
-    <input type="checkbox" name="" />
-    I accept the <a href="#">terms of use </a>& <a href="#">privacy policy</a>
-  </label>
-</div>-->
       <div class="d-grid gap-2">
-        <input type="button" class="btn btn-success btn-block" name="" value="Submit" />
+        <button class="btn btn-success btn-block" [disabled]="registerForm.invalid">Submit</button>
       </div>
       <div class="login">
         <p>Create your account or <a href="login">Login</a></p>

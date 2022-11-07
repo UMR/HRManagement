@@ -40,3 +40,9 @@ a.registration {
   color: green;
   font-weight: bold;
 }
+
+.error {
+  color: red;
+  padding-left: 8px;
+  font-size: 12px;
+}
