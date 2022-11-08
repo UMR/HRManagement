@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { NoticeComponent } from './notice/notice.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NoticeService } from './notice/notice.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NoticeService } from './notice/notice.service';
     RegistrationComponent,
     HomeComponent,
     NoticeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
