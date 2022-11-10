@@ -14,7 +14,6 @@ export class NoticeComponent implements OnInit {
 
   ngOnInit(): void {
     this.noticeService.topHeading().subscribe((result) => {
-      console.log(result);
       this.topHeadingDisplay = result.articles;
     })
   }

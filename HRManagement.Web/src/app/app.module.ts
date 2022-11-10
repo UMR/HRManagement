@@ -13,6 +13,8 @@ import { NoticeComponent } from './notice/notice.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NoticeService } from './notice/notice.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { UserInformationComponent } from './user-information/user-information.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     HomeComponent,
     NoticeComponent,
     PageNotFoundComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    UserInformationComponent
   ],
   imports: [
     BrowserModule,
