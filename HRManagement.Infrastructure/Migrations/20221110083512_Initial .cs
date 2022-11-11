@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace HRManagement.Persistence.Migrations
+namespace HRManagement.Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HRManagement.Application.Features.User.Queries;
+using HRManagement.Application.Dtos.User;
 using HRManagement.Domain.Entities;
 
 namespace HRManagement.Application.Mappings
@@ -9,6 +9,8 @@ namespace HRManagement.Application.Mappings
         public MappingProfile()
         {
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, CreateUserDto>().ReverseMap();
+            CreateMap<User, UpdateUserDto>().ReverseMap();
         }
     }
 }

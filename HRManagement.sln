@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Domain", "HRMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Application", "HRManagement.Application\HRManagement.Application.csproj", "{CA15AD25-FA7A-4103-8E8E-9CB3419AD19A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Infrastructure", "HRManagement.Infrastructure\HRManagement.Infrastructure.csproj", "{B110C090-D30C-4EC1-8F30-86510E781E91}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Persistence", "HRManagement.Persistence\HRManagement.Persistence.csproj", "{9072282E-6488-440E-95DB-45AF2F930BC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Infrastructure", "HRManagement.Infrastructure\HRManagement.Infrastructure.csproj", "{9072282E-6488-440E-95DB-45AF2F930BC9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.API", "HRManagement.API\HRManagement.API.csproj", "{6F12DD6D-572C-4454-A40E-B0422510BBA1}"
 EndProject
@@ -29,10 +27,6 @@ Global
 		{CA15AD25-FA7A-4103-8E8E-9CB3419AD19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA15AD25-FA7A-4103-8E8E-9CB3419AD19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA15AD25-FA7A-4103-8E8E-9CB3419AD19A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B110C090-D30C-4EC1-8F30-86510E781E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B110C090-D30C-4EC1-8F30-86510E781E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B110C090-D30C-4EC1-8F30-86510E781E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B110C090-D30C-4EC1-8F30-86510E781E91}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9072282E-6488-440E-95DB-45AF2F930BC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9072282E-6488-440E-95DB-45AF2F930BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9072282E-6488-440E-95DB-45AF2F930BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU

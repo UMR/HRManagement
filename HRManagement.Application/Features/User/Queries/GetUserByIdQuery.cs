@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HRManagement.Application.Contracts.Persistence;
+using HRManagement.Application.Dtos.User;
 using MediatR;
 
 namespace HRManagement.Application.Features.User.Queries
@@ -21,7 +22,7 @@ namespace HRManagement.Application.Features.User.Queries
 
         public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            var userFromRepo = await _userRepository.GetUserById(request.Id);
+            var userFromRepo = await _userRepository.GetUserByIdAsync(request.Id);
             return _mapper.Map<UserDto>(userFromRepo);
         }
     }
