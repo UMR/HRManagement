@@ -10,17 +10,22 @@ import { Login } from './login';
 })
 export class LoginComponent implements OnInit {
   userModal = new Login();
+  public lsIsLoggedin: string = 'not logged in';
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   onSubmit() {
+    this.lsIsLoggedin = 'logged in';
+    localStorage.setItem('loggedinData', this.lsIsLoggedin);
+    /*
     alert(
       `${this.userModal.emailId} Logged in Successfully!!`
-    );
-    console.log(this.userModal);
+    );*/
+    this.goToPage('');
   }
 
   goToPage(pageName: any): void {

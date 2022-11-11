@@ -7,14 +7,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public loggedin: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('loggedinData') == 'logged in') {
+      this.loggedin = true;
+    }
   }
 
   goToPage(pageName: any): void {
     this.router.navigate([`${pageName}`]);
+  }
+
+  logout() {
+    localStorage.clear();
   }
 
 }
