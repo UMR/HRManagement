@@ -1,37 +1,17 @@
-<!--<div class="header">
-  <a href="#" class="logo">HR Management System</a>
-  <div class="header-right">
-    <a href="login" (click)="goToPage('login')">Login</a>
-    <a href="#" *ngIf="loggedin">About</a>
-    <div class="dropdown">
-      <img src="assets/img/user.svg" class="dropdown-toggle rounded-circle" width="30" height="30" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <div class="dropdown-menu dropdown-menu-right dropdown-user" aria-labelledby="dropdownMenuButton">
-        <div class="media">
-          <img src="assets/img/user.svg" class="rounded-circle" width="72" height="72" alt="...">
-          <div class="media-body">
-            <h5 class="mb-2 mt-3">Name</h5>
-            <h6><a [routerLink]="['/login']"><i class="fa fa-power-off mr-2"></i>Logout</a></h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
-
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
+  <div class="container-fluid container" style="display:block;">
     <a class="navbar-brand" href="#">HR Management System</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="float:right;">
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!loggedin">
           <a class="nav-link active" aria-current="page" href="login">Login</a>
         </li>
         <li class="nav-item dropdown" *ngIf="loggedin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Profile
+            <img [src]="defalutImg" (imgfileChange)="imgChanged($event)" style="width:auto; height:30px;" />
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="user-information">Edit profile</a></li>
