@@ -48,7 +48,7 @@
                 LinkedIn <span style="color:red; font-weight:bolder;">*</span>
               </div>
               <div class="col-md-8">
-                <label *ngIf="!editMode" for="linkedinaccount" class="form-label pt-1">www.towsif.linkedin.com</label>
+                <label *ngIf="!editMode" for="linkedinaccount" class="form-label pt-1"><i>www.towsif.linkedin.com</i></label>
                 <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter LinkedIn Url" formControlName="linkedinaccount" />
                 <div *ngIf="linkedinaccount.invalid && (linkedinaccount.touched || linkedinaccount.dirty)">
                   <span class="error" *ngIf="linkedinaccount.errors?.required">*LinkedIn Url is required</span>
@@ -60,7 +60,7 @@
                 Gmail
               </div>
               <div class="col-md-8">
-                <label *ngIf="!editMode" for="gmail" class="form-label pt-1">towsif@gmail.com</label>
+                <label *ngIf="!editMode" for="gmail" class="form-label pt-1"><i>towsif@gmail.com</i></label>
                 <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Gmail" formControlName="gmail" />
                 <div *ngIf="gmail.invalid && (gmail.touched || gmail.dirty)">
                   <span class="error" *ngIf="gmail.errors?.required">*Gmail is required</span>
@@ -72,7 +72,7 @@
                 Skype
               </div>
               <div class="col-md-8">
-                <label *ngIf="!editMode" for="skype" class="form-label pt-1">towsiskype</label>
+                <label *ngIf="!editMode" for="skype" class="form-label pt-1"><i>towsiskype</i></label>
                 <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Skype" formControlName="skype" />
                 <div *ngIf="skype.invalid && (skype.touched || skype.dirty)">
                   <span class="error" *ngIf="skype.errors?.required">*Skype is required</span>
@@ -84,7 +84,7 @@
                 Git Url
               </div>
               <div class="col-md-8">
-                <label *ngIf="!editMode" for="gitaccount" class="form-label pt-1">towsi.github.com</label>
+                <label *ngIf="!editMode" for="gitaccount" class="form-label pt-1"><i>towsif.github.com</i></label>
                 <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Git Account" formControlName="gitaccount" />
                 <div *ngIf="gitaccount.invalid && (gitaccount.touched || gitaccount.dirty)">
                   <span class="error" *ngIf="gitaccount.errors?.required">*Git Account is required</span>
