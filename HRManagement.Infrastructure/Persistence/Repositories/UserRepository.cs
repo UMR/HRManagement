@@ -28,7 +28,7 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
         {
             await _dbContext.Users.AddAsync(user);
             var result = await _dbContext.SaveChangesAsync();
-            return user.UserId;
+            return user.Id;
         }
 
         public async Task<bool> UpdateUserAsync(User user)

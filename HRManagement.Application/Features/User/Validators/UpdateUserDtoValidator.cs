@@ -7,7 +7,7 @@ namespace HRManagement.Application.Features.User.Validators
     {
         public UpdateUserDtoValidator()
         {
-            RuleFor(c => c.UserId)
+            RuleFor(c => c.Id)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
 

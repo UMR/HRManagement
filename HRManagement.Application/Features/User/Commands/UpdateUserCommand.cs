@@ -34,13 +34,14 @@ namespace HRManagement.Application.Features.User.Commands
                 response.Success = false;
                 response.Message = "Updating Failed";
                 response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return response;
             }
 
-            var userRequest = await _userRepository.GetUserByIdAsync(request.UpdateUserDto.UserId);
+            var userRequest = await _userRepository.GetUserByIdAsync(request.UpdateUserDto.Id);
 
             if (userRequest is null)
             {
-                throw new NotFoundException(nameof(Domain.Entities.User), request.UpdateUserDto.UserId.ToString());
+                throw new NotFoundException(nameof(Domain.Entities.User), request.UpdateUserDto.Id.ToString());
             }
 
             _mapper.Map(request.UpdateUserDto, userRequest);
@@ -48,7 +49,7 @@ namespace HRManagement.Application.Features.User.Commands
 
             response.Success = true;
             response.Message = "Updating Successful";
-            response.Id = userRequest.UserId;
+            response.Id = userRequest.Id;
 
             return response;
         }

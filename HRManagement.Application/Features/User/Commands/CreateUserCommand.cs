@@ -34,7 +34,8 @@ namespace HRManagement.Application.Features.User.Commands
             {
                 response.Success = false;
                 response.Message = "Creation Failed";
-                response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();                
+                response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return response;
             }
 
             var userRequest = _mapper.Map<Domain.Entities.User>(request.CreateUserDto);

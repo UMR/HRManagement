@@ -12,7 +12,13 @@ namespace HRManagement.API.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string? UserId => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+        public int? UserId
+        {
+            get 
+            {
+                return Convert.ToInt32(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
+            }
+        }
     }
 
 }

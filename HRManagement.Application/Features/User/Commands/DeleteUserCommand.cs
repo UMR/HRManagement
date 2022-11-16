@@ -35,7 +35,7 @@ namespace HRManagement.Application.Features.User.Commands
 
             response.Success = true;
             response.Message = "Deleting Successful";
-            response.Id = userRequest.UserId;
+            response.Id = userRequest.Id;
 
             return response;
         }
