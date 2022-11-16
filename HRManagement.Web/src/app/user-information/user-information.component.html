@@ -4,7 +4,7 @@
 <div class="container">
   <div class="card">
     <div class="text-center"><img [src]="file" style="width:auto; height:150px;" /> </div>
-    <p-fileUpload #fileInput name="files[]" [customUpload]="true" (uploadHandler)="onUpload($event)"
+    <p-fileUpload name="files[]" [customUpload]="true" (uploadHandler)="onUpload($event)"
                   [multiple]="false" accept="image/*" [maxFileSize]="1000000" [auto]="true">
       <!--<ng-template pTemplate="content">
         <ul *ngIf="uploadedFiles.length">
