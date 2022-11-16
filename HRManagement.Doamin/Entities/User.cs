@@ -1,4 +1,6 @@
-﻿namespace HRManagement.Domain.Entities
+﻿using HRManagement.Domain.Common;
+
+namespace HRManagement.Domain.Entities
 {
     public class User: BaseAuditableEntity
     {        

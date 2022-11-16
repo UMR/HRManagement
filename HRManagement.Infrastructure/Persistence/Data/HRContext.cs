@@ -1,6 +1,8 @@
 ﻿using HRManagement.Application.Contracts.Infrastructure;
+using HRManagement.Domain.Common;
 using HRManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Reflection;
 
@@ -9,10 +11,12 @@ namespace HRManagement.Infrastructure.Persistence.Data
     public class HRDbContext: DbContext
     {
         private readonly ICurrentUserService _currentUserService;
+        private readonly IDateTime _dateTime;
 
-        public HRDbContext(DbContextOptions<HRDbContext> options, ICurrentUserService currentUserService) : base(options)
+        public HRDbContext(DbContextOptions<HRDbContext> options, ICurrentUserService currentUserService, IDateTime dateTime) : base(options)
         {
             _currentUserService = currentUserService;
+            _dateTime = dateTime;
         }
         public DbSet<User> Users { get; set; }
 
@@ -32,12 +36,12 @@ namespace HRManagement.Infrastructure.Persistence.Data
 
             foreach (var entityEntry in entries)
             {
-                ((BaseAuditableEntity)entityEntry.Entity).LastModified = DateTime.Now;
-                ((BaseAuditableEntity)entityEntry.Entity).LastModified = DateTime.Now;
+                ((BaseAuditableEntity)entityEntry.Entity).LastModifiedBy = _currentUserService.UserId;
+                ((BaseAuditableEntity)entityEntry.Entity).LastModified = _dateTime.Now;
 
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((BaseAuditableEntity)entityEntry.Entity).Created = DateTime.Now;
+                    ((BaseAuditableEntity)entityEntry.Entity).Created = _dateTime.Now;
                     ((BaseAuditableEntity)entityEntry.Entity).CreatedBy = _currentUserService.UserId;
                 }
             }
@@ -47,25 +51,31 @@ namespace HRManagement.Infrastructure.Persistence.Data
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var entries = ChangeTracker
-                .Entries()
-                .Where(e => e.Entity is BaseEntity && (
-                        e.State == EntityState.Added
-                        || e.State == EntityState.Modified));
-
-            foreach (var entityEntry in entries)
+            foreach (var entry in ChangeTracker.Entries<BaseAuditableEntity>())
             {
-                ((BaseAuditableEntity)entityEntry.Entity).LastModifiedBy = _currentUserService.UserId;
-                ((BaseAuditableEntity)entityEntry.Entity).LastModified = DateTime.Now;
-
-                if (entityEntry.State == EntityState.Added)
+                if (entry.State == EntityState.Added)
                 {
-                    ((BaseAuditableEntity)entityEntry.Entity).Created = DateTime.Now;
-                    ((BaseAuditableEntity)entityEntry.Entity).CreatedBy = _currentUserService.UserId;
+                    entry.Entity.CreatedBy = _currentUserService.UserId;
+                    entry.Entity.Created = _dateTime.Now;
                 }
-            }            
+
+                if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
+                {
+                    entry.Entity.LastModifiedBy = _currentUserService.UserId;
+                    entry.Entity.LastModified = _dateTime.Now;
+                }
+            }
 
             return base.SaveChangesAsync(cancellationToken);
         }        
     }
+}
+
+public static class Extensions
+{
+    public static bool HasChangedOwnedEntities(this EntityEntry entry) =>
+        entry.References.Any(r =>
+            r.TargetEntry != null &&
+            r.TargetEntry.Metadata.IsOwned() &&
+            (r.TargetEntry.State == EntityState.Added || r.TargetEntry.State == EntityState.Modified));
 }
