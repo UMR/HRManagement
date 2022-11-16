@@ -1,16 +1,376 @@
 <app-header></app-header>
 
-
 <div class="container">
-  <div class="card">
-    <div class="text-center"><img [src]="file" style="width:auto; height:150px;" /> </div>
-    <p-fileUpload name="files[]" [customUpload]="true" (uploadHandler)="onUpload($event)"
-                  [multiple]="false" accept="image/*" [maxFileSize]="1000000" [auto]="true">
-      <!--<ng-template pTemplate="content">
-        <ul *ngIf="uploadedFiles.length">
-          <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-        </ul>
-      </ng-template>-->
-    </p-fileUpload>
-  </div>
+  <form class="form-signup form-box" [formGroup]="profileEditForm" (ngSubmit)="submitForm()">
+    <div class="card" style="border:0;">
+
+      <div class="form-group mb-3" style="margin-top:20px;">
+
+        <div class="row text-end">
+          <div class=" text-end">
+            <button class="btn btn-light btn-block" style="margin-bottom:10px; width:300px;"
+                    (click)="editProfile()">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:50px;">
+          <div class="col-md-3">
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-12 text-center">
+                <img [src]="file"
+                     style="width: 150px; height: 150px; border: 2px solid black; border-radius: 50%; " />
+              </div>
+              <div class="col-md-12 text-center">
+                <p-fileUpload mode="advanced"
+                              [customUpload]="true"
+                              chooseLabel="Upload"
+                              accept="image/*"
+                              [maxFileSize]="5000000"
+                              tabindex="1"
+                              (onSelect)="onFileSelect($event)"
+                              (uploadHandler)="onUpload($event)"
+                              [auto]="true">
+                  <ng-template pTemplate="toolbar">
+                    <p class="mt-3">Size Maximum 5MB ( jpg, jpeg, png, gif format )</p>
+                  </ng-template>
+                  <ng-template let-file pTemplate="file">
+                  </ng-template>
+                  <ng-template pTemplate="content">
+                  </ng-template>
+                </p-fileUpload>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-4 pt-1">
+                LinkedIn <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-8">
+                <label *ngIf="!editMode" for="linkedinaccount" class="form-label pt-1">www.towsif.linkedin.com</label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter LinkedIn Url" formControlName="linkedinaccount" />
+                <div *ngIf="linkedinaccount.invalid && (linkedinaccount.touched || linkedinaccount.dirty)">
+                  <span class="error" *ngIf="linkedinaccount.errors?.required">*LinkedIn Url is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-4 pt-1">
+                Gmail
+              </div>
+              <div class="col-md-8">
+                <label *ngIf="!editMode" for="gmail" class="form-label pt-1">towsif@gmail.com</label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Gmail" formControlName="gmail" />
+                <div *ngIf="gmail.invalid && (gmail.touched || gmail.dirty)">
+                  <span class="error" *ngIf="gmail.errors?.required">*Gmail is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-4 pt-1">
+                Skype
+              </div>
+              <div class="col-md-8">
+                <label *ngIf="!editMode" for="skype" class="form-label pt-1">towsiskype</label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Skype" formControlName="skype" />
+                <div *ngIf="skype.invalid && (skype.touched || skype.dirty)">
+                  <span class="error" *ngIf="skype.errors?.required">*Skype is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-4 pt-1">
+                Git Url
+              </div>
+              <div class="col-md-8">
+                <label *ngIf="!editMode" for="gitaccount" class="form-label pt-1">towsi.github.com</label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Git Account" formControlName="gitaccount" />
+                <div *ngIf="gitaccount.invalid && (gitaccount.touched || gitaccount.dirty)">
+                  <span class="error" *ngIf="gitaccount.errors?.required">*Git Account is required</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                First Name <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="firstname" class="form-label pt-1"><b>Towsif</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter First Name" formControlName="firstname" />
+                <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)">
+                  <span class="error" *ngIf="firstname.errors?.required">*First name is required</span>
+                  <span class="error" *ngIf="firstname.errors?.pattern">*Enter only characters</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Last Name <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="lastname" class="form-label pt-1"><b>Patwary</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastname" />
+                <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)">
+                  <span class="error" *ngIf="lastname.errors?.required">*Last name is required</span>
+                  <span class="error" *ngIf="lastname.errors?.pattern">*Enter only characters</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Gender <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="gender" class="form-label pt-1"><b>Male</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Gender" formControlName="gender" />
+                <div *ngIf="gender.invalid && (gender.touched || gender.dirty)">
+                  <span class="error" *ngIf="gender.errors?.required">*Gender is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Address <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="address" class="form-label pt-1"><b>56 Mohakhali</b></label>
+                <textarea *ngIf="editMode" class="form-control" id="address" formControlName="address" rows="3" placeholder="Enter Address"></textarea>
+                <div *ngIf="address.invalid && (address.touched || address.dirty)">
+                  <span class="error" *ngIf="address.errors?.required">*Address is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                City <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="city" class="form-label pt-1"><b>Dhaka</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter City" formControlName="city" />
+                <div *ngIf="city.invalid && (city.touched || city.dirty)">
+                  <span class="error" *ngIf="city.errors?.required">*City is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                State <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="state" class="form-label pt-1"><b>Bangladesh</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter State" formControlName="state" />
+                <div *ngIf="state.invalid && (state.touched || state.dirty)">
+                  <span class="error" *ngIf="state.errors?.required">*State is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Zip Code <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="zipcode" class="form-label pt-1"><b>1207</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Zip Code" formControlName="zipcode" />
+                <div *ngIf="zipcode.invalid && (zipcode.touched || zipcode.dirty)">
+                  <span class="error" *ngIf="zipcode.errors?.required">*Zip Code is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Mobile <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="mobile" class="form-label pt-1"><b>+8801670000123</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Mobile Number" formControlName="mobile" />
+                <div *ngIf="mobile.invalid && (mobile.touched || mobile.dirty)">
+                  <span class="error" *ngIf="mobile.errors?.required">*Mobile no is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Date of Birth <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="dob" class="form-label pt-1"><b>03-Oct-2000</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Date of Birth" formControlName="dob" />
+                <div *ngIf="dob.invalid && (dob.touched || dob.dirty)">
+                  <span class="error" *ngIf="dob.errors?.required">*Date of Birth is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Blood Group <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="bloodgroup" class="form-label pt-1"><b>A Positive</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Blood Group" formControlName="bloodgroup" />
+                <div *ngIf="bloodgroup.invalid && (bloodgroup.touched || bloodgroup.dirty)">
+                  <span class="error" *ngIf="bloodgroup.errors?.required">*Blood Group is required</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-5">
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Marital Status
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="maritalstatus" class="form-label pt-1"><b>Unmarried</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Marital Status" formControlName="maritalstatus" />
+                <div *ngIf="maritalstatus.invalid && (maritalstatus.touched || maritalstatus.dirty)">
+                  <span class="error" *ngIf="maritalstatus.errors?.required">*Marital Status is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Height
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="height" class="form-label pt-1"><b>5.6"</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Height" formControlName="height" />
+                <div *ngIf="height.invalid && (height.touched || height.dirty)">
+                  <span class="error" *ngIf="height.errors?.required">*Height is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Weight (kg)
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="weight" class="form-label pt-1"><b>67 kg</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Weight" formControlName="weight" />
+                <div *ngIf="weight.invalid && (weight.touched || weight.dirty)">
+                  <span class="error" *ngIf="weight.errors?.required">*Weight is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Place of Birth
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="placeofbirth" class="form-label pt-1"><b>India</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Place of Birth" formControlName="placeofbirth" />
+                <div *ngIf="placeofbirth.invalid && (placeofbirth.touched || placeofbirth.dirty)">
+                  <span class="error" *ngIf="placeofbirth.errors?.required">*Place of Birth is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                NID
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="nid" class="form-label pt-1"><b>71423551021</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter NID" formControlName="nid" />
+                <div *ngIf="nid.invalid && (nid.touched || nid.dirty)">
+                  <span class="error" *ngIf="nid.errors?.required">*NID is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Passport
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="passport" class="form-label pt-1"><b>B9815341</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Passport" formControlName="passport" />
+                <div *ngIf="passport.invalid && (passport.touched || passport.dirty)">
+                  <span class="error" *ngIf="passport.errors?.required">*Passport is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Driver License
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="driverlicense" class="form-label pt-1"><b>F123h</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Driver License" formControlName="driverlicense" />
+                <div *ngIf="driverlicense.invalid && (driverlicense.touched || driverlicense.dirty)">
+                  <span class="error" *ngIf="driverlicense.errors?.required">*Driver License is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Education
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="educationalqualification" class="form-label pt-1"><b>BSc. in CSE</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Latest Educational Qualification" formControlName="educationalqualification" />
+                <div *ngIf="educationalqualification.invalid && (educationalqualification.touched || educationalqualification.dirty)">
+                  <span class="error" *ngIf="educationalqualification.errors?.required">*Educational Qualification is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Company
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="company" class="form-label pt-1"><b>AEL</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Company" formControlName="company" />
+                <div *ngIf="company.invalid && (company.touched || company.dirty)">
+                  <span class="error" *ngIf="company.errors?.required">*Company is required</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 text-end pt-1">
+                Joining Date
+              </div>
+              <div class="col-md-7">
+                <label *ngIf="!editMode" for="joiningdate" class="form-label pt-1"><b>01-Aug-2020</b></label>
+                <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Joining Date" formControlName="joiningdate" />
+                <div *ngIf="joiningdate.invalid && (joiningdate.touched || joiningdate.dirty)">
+                  <span class="error" *ngIf="joiningdate.errors?.required">*Joining Date is required</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div *ngIf="editMode" class="col-md-12 gap-2 text-end" style="margin-top: 30px; ">
+              <button class="btn btn-success btn-block" [disabled]="profileEditForm.invalid"
+                      style="margin-bottom:10px; width:100px;">
+                Submit
+              </button>
+            </div>
+
+          </div>
+        </div>
+        </div>
+    </div>
+  </form>
 </div>

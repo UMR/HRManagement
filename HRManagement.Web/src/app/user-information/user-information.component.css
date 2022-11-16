@@ -1,0 +1,55 @@
+.error {
+  color: red;
+  padding-left: 8px;
+  font-size: 12px;
+}
+
+
+.download {
+  font-size: 15px;
+  float: right;
+  padding-right: 10px;
+}
+
+:host >>> .pi-plus:before {
+  display: none !important;
+}
+
+.btn-download {
+  height: 42px;
+  cursor: pointer;
+  color: white;
+}
+:host >>> .p-button {
+  color: #ffffff;
+  background: #6c757d;
+  border: 1px solid #6c757d;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+
+
+/* FileUpload */
+:host >>> .p-fileupload .p-fileupload-buttonbar {
+  background: white;
+  padding: 0;
+  border: 0;
+  color: #343a40;
+  font-size:11px;
+  margin-top:60px;
+  border-bottom: 0 none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+:host >>> .p-fileupload .p-fileupload-content {
+  padding: 0 ;
+}
+:host >>> .p-fileupload .p-fileupload-content {
+  padding: 0;
+  border: 0;
+}
+:host >>> .p-fileupload .p-progressbar {
+  height: 0;
+}
