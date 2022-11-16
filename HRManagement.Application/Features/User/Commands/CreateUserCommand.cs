@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Dtos.User;
+using HRManagement.Application.Exceptions;
 using HRManagement.Application.Features.User.Validators;
 using HRManagement.Application.Wrapper;
-using HRManagement.Domain.Entities;
 using MediatR;
+using System.Linq;
 
 namespace HRManagement.Application.Features.User.Commands
 {
@@ -33,7 +34,7 @@ namespace HRManagement.Application.Features.User.Commands
             {
                 response.Success = false;
                 response.Message = "Creation Failed";
-                response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();                
             }
 
             var userRequest = _mapper.Map<Domain.Entities.User>(request.CreateUserDto);

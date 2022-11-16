@@ -1,8 +1,8 @@
 ﻿namespace HRManagement.Application.Exceptions
 {
-    public class BadRequestException:ApplicationException
+    public class BadRequestException : Exception
     {
-        public BadRequestException(string name, object key):base($"{name} ({key}) was not found")
+        public BadRequestException(string name, object key) : base($"{name} ({key}) was not found")
         {
 
         }

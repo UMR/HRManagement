@@ -28,7 +28,7 @@ namespace HRManagement.Application.Features.User.Commands
 
             if (userRequest == null)
             {
-                throw new NotFoundException(nameof(userRequest), request.UserId);
+                throw new NotFoundException(nameof(Domain.Entities.User), request.UserId);
             }
 
             await _userRepository.DeleteUserAsync(userRequest);

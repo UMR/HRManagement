@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using HRManagement.Application.Behaviours;
+using HRManagement.Application.Contracts.Infrastructure;
 using HRManagement.Application.Mappings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +16,9 @@ namespace HRManagement.Application
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddFluentValidationAutoValidation();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));            
 
             return services;
         }

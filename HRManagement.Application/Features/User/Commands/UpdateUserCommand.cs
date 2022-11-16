@@ -40,7 +40,7 @@ namespace HRManagement.Application.Features.User.Commands
 
             if (userRequest is null)
             {
-                throw new NotFoundException(nameof(userRequest), request.UpdateUserDto.UserId.ToString());
+                throw new NotFoundException(nameof(Domain.Entities.User), request.UpdateUserDto.UserId.ToString());
             }
 
             _mapper.Map(request.UpdateUserDto, userRequest);
