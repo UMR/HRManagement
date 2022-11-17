@@ -3,7 +3,7 @@ using HRManagement.Application.Features.Users.Commands;
 using HRManagement.Application.Features.Users.Queries;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HRManagement.API.Controllers
+namespace HRManagement.API.Controllers.V1
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -36,7 +36,7 @@ namespace HRManagement.API.Controllers
             var response = await Mediator.Send(command);
             return Ok(response);
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {

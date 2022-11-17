@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HRManagement.API.Controllers
+namespace HRManagement.API.Controllers.V1
 {
     public class ApiControllerBase : ControllerBase
     {
