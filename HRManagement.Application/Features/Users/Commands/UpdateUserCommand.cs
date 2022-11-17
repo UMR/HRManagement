@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using HRManagement.Application.Contracts.Persistence;
-using HRManagement.Application.Dtos.User;
+using HRManagement.Application.Dtos.Users;
 using HRManagement.Application.Exceptions;
-using HRManagement.Application.Features.User.Validators;
+using HRManagement.Application.Features.Users.Validators;
 using HRManagement.Application.Wrapper;
+using HRManagement.Domain.Entities;
 using MediatR;
 
-namespace HRManagement.Application.Features.User.Commands
+namespace HRManagement.Application.Features.Users.Commands
 {
     public record UpdateUserCommand : IRequest<BaseCommandResponse>
     {
@@ -41,7 +42,7 @@ namespace HRManagement.Application.Features.User.Commands
 
             if (userRequest is null)
             {
-                throw new NotFoundException(nameof(Domain.Entities.User), request.UpdateUserDto.Id.ToString());
+                throw new NotFoundException(nameof(User), request.UpdateUserDto.Id.ToString());
             }
 
             _mapper.Map(request.UpdateUserDto, userRequest);

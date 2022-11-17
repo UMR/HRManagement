@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using HRManagement.Application.Contracts.Persistence;
-using HRManagement.Application.Dtos.User;
-using HRManagement.Application.Exceptions;
-using HRManagement.Application.Features.User.Validators;
+using HRManagement.Application.Dtos.Users;
+using HRManagement.Application.Features.Users.Validators;
 using HRManagement.Application.Wrapper;
+using HRManagement.Domain.Entities;
 using MediatR;
-using System.Linq;
 
-namespace HRManagement.Application.Features.User.Commands
+namespace HRManagement.Application.Features.Users.Commands
 {
     public record CreateUserCommand : IRequest<BaseCommandResponse>
     {
@@ -38,7 +37,7 @@ namespace HRManagement.Application.Features.User.Commands
                 return response;
             }
 
-            var userRequest = _mapper.Map<Domain.Entities.User>(request.CreateUserDto);
+            var userRequest = _mapper.Map<User>(request.CreateUserDto);
             var userId = await _userRepository.CreateUserAsync(userRequest);
 
             response.Success = true;

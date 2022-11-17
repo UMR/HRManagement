@@ -1,6 +1,6 @@
-﻿using HRManagement.Application.Dtos.User;
-using HRManagement.Application.Features.User.Commands;
-using HRManagement.Application.Features.User.Queries;
+﻿using HRManagement.Application.Dtos.Users;
+using HRManagement.Application.Features.Users.Commands;
+using HRManagement.Application.Features.Users.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagement.API.Controllers

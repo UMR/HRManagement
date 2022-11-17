@@ -1,16 +1,12 @@
 ﻿using FluentValidation;
-using HRManagement.Application.Dtos.User;
+using HRManagement.Application.Dtos.Users;
 
-namespace HRManagement.Application.Features.User.Validators
+namespace HRManagement.Application.Features.Users.Validators
 {
-    public class UpdateUserDtoValidator : AbstractValidator<UpdateUserDto>
+    public class CreateUserDtoValidator : AbstractValidator<CreateUserDto>
     {
-        public UpdateUserDtoValidator()
+        public CreateUserDtoValidator()
         {
-            RuleFor(c => c.Id)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
-
             RuleFor(c => c.FirstName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
@@ -29,7 +25,7 @@ namespace HRManagement.Application.Features.User.Validators
             RuleFor(c => c.Password)
               .NotEmpty().WithMessage("{PropertyName} is required.")
               .NotNull()
-              .MaximumLength(1024).WithMessage("{PropertyName} must not exceed 128 characters");
+              .MaximumLength(1024).WithMessage("{PropertyName} must not exceed 64 characters");
         }
     }
 }

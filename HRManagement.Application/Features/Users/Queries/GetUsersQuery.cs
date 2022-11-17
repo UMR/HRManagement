@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using HRManagement.Application.Contracts.Persistence;
-using HRManagement.Application.Dtos.User;
+using HRManagement.Application.Dtos.Users;
 using MediatR;
 
-namespace HRManagement.Application.Features.User.Queries
+namespace HRManagement.Application.Features.Users.Queries
 {
     public record GetUsersQuery : IRequest<List<UserDto>>;
     public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<UserDto>>

@@ -1,4 +1,4 @@
-﻿namespace HRManagement.Application.Dtos.User
+﻿namespace HRManagement.Application.Dtos.Users
 {
     public class UpdateUserDto
     {

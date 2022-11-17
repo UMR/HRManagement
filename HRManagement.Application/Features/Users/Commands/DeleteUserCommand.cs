@@ -2,9 +2,10 @@
 using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Exceptions;
 using HRManagement.Application.Wrapper;
+using HRManagement.Domain.Entities;
 using MediatR;
 
-namespace HRManagement.Application.Features.User.Commands
+namespace HRManagement.Application.Features.Users.Commands
 {
     public class DeleteUserCommand : IRequest<BaseCommandResponse>
     {
@@ -28,7 +29,7 @@ namespace HRManagement.Application.Features.User.Commands
 
             if (userRequest == null)
             {
-                throw new NotFoundException(nameof(Domain.Entities.User), request.UserId);
+                throw new NotFoundException(nameof(User), request.UserId);
             }
 
             await _userRepository.DeleteUserAsync(userRequest);

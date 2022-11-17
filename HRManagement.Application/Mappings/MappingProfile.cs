@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HRManagement.Application.Dtos.User;
+using HRManagement.Application.Dtos.Users;
 using HRManagement.Domain.Entities;
 
 namespace HRManagement.Application.Mappings
