@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FileService } from '../services/file.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserInformation } from './user-information';
 
 @Component({
   selector: 'app-user-information',
@@ -15,11 +16,45 @@ export class UserInformationComponent implements OnInit {
   public profileEditForm: any;
   public editMode: boolean = false;
 
-  constructor(private messageService: MessageService,
+  public _gender: UserInformation[] = [];
+  public _bloodgroup: UserInformation[] = [];
+  public _maritalstatus: UserInformation[] = [];
+  public _company: UserInformation[] = [];
+  gender!: string;
+  bloodgroup!: string;
+  maritalstatus!: string;
+  company!: string;
+
+  constructor(
+    private messageService: MessageService,
     private _sanitizer: DomSanitizer,
     private fileService: FileService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder)
+  {
+    this._gender = [
+      { code: 'male', name: 'Male' },
+      { code: 'female', name: 'Female' }
+    ];
+    this._bloodgroup = [
+      { code: 'a+', name: 'A positive' },
+      { code: 'a-', name: 'A negative' },
+      { code: 'b+', name: 'B positive' },
+      { code: 'b-', name: 'B negative' },
+      { code: 'ab+', name: 'AB positive' },
+      { code: 'ab-', name: 'AB negative' },
+      { code: 'o+', name: 'O positive' },
+      { code: 'o-', name: 'O negative' },
+    ];
+    this._maritalstatus = [
+      { code: 'unmarried', name: 'Unmarried' },
+      { code: 'married', name: 'Married' }
+    ];
+    this._company = [
+      { code: 'ael', name: 'AEL' },
+      { code: 'dcl', name: 'DCL' },
+      { code: 'celloscope', name: 'CELL' }
+    ];
+  }
   
   ngOnInit(): void{
     localStorage.removeItem("hasFileData");
@@ -29,9 +64,9 @@ export class UserInformationComponent implements OnInit {
       lastname: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       gender: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      state: new FormControl(null, [Validators.required]),
-      zipcode: new FormControl(null, [Validators.required]),
+      district: new FormControl(null, [Validators.required]),
+      division: new FormControl(null, [Validators.required]),
+      postalcode: new FormControl(null, [Validators.required]),
       mobile: new FormControl(null, [Validators.required]),
       dob: new FormControl(null, [Validators.required]),
       bloodgroup: new FormControl(null, [Validators.required]),
@@ -54,15 +89,15 @@ export class UserInformationComponent implements OnInit {
   }
   get firstname() { return this.profileEditForm.get('firstname'); }
   get lastname() { return this.profileEditForm.get('lastname'); }
-  get gender() { return this.profileEditForm.get('gender'); }
+  //get gender() { return this.profileEditForm.get('gender'); }
   get address() { return this.profileEditForm.get('address'); }
-  get city() { return this.profileEditForm.get('city'); }
-  get state() { return this.profileEditForm.get('state'); }
-  get zipcode() { return this.profileEditForm.get('zipcode'); }
+  get district() { return this.profileEditForm.get('district'); }
+  get division() { return this.profileEditForm.get('division'); }
+  get postalcode() { return this.profileEditForm.get('postalcode'); }
   get mobile() { return this.profileEditForm.get('mobile'); }
   get dob() { return this.profileEditForm.get('dob'); }
-  get bloodgroup() { return this.profileEditForm.get('bloodgroup'); }
-  get maritalstatus() { return this.profileEditForm.get('maritalstatus'); }
+  //get bloodgroup() { return this.profileEditForm.get('bloodgroup'); }
+  //get maritalstatus() { return this.profileEditForm.get('maritalstatus'); }
   get height() { return this.profileEditForm.get('height'); }
   get weight() { return this.profileEditForm.get('weight'); }
   get placeofbirth() { return this.profileEditForm.get('placeofbirth'); }
@@ -70,7 +105,7 @@ export class UserInformationComponent implements OnInit {
   get passport() { return this.profileEditForm.get('passport'); }
   get driverlicense() { return this.profileEditForm.get('driverlicense'); }
   get educationalqualification() { return this.profileEditForm.get('educationalqualification'); }
-  get company() { return this.profileEditForm.get('company'); }
+  //get company() { return this.profileEditForm.get('company'); }
   get joiningdate() { return this.profileEditForm.get('joiningdate'); }
 
   get linkedinaccount() { return this.profileEditForm.get('linkedinaccount'); }

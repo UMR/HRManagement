@@ -30,6 +30,13 @@
   border-radius: 6px;
 }
 
+:host >>> .p-calendar {
+  height: 35px !important;
+}
+
+:host >>> .p-dropdown {
+  height: 40px !important;
+}
 
 /* FileUpload */
 :host >>> .p-fileupload .p-fileupload-buttonbar {
@@ -37,8 +44,8 @@
   padding: 0;
   border: 0;
   color: #343a40;
-  font-size:11px;
-  margin-top:60px;
+  font-size: 11px;
+  margin-top: 60px;
   border-bottom: 0 none;
   border-top-right-radius: 0;
   border-top-left-radius: 0;

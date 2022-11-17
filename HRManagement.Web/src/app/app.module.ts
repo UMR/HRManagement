@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule }
-  from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AccordionModule } from 'primeng/accordion';     
-
+import { AccordionModule } from 'primeng/accordion'; 
 import { FileUploadModule } from 'primeng/fileupload';
 
 import { HeaderComponent } from './common/components/header/header.component';
@@ -47,6 +47,8 @@ import { FileService } from './services/file.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    DropdownModule,
+    CalendarModule,
     AccordionModule,
     FileUploadModule,
     MessagesModule,
