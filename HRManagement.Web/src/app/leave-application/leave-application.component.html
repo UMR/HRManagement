@@ -56,29 +56,30 @@
             </div>
 
           </div>
+
           <div class="col-md-6">
             <div class="row" style="margin-bottom:10px;">
-              <div class="col-md-5 pt-1">
+              <div class="col-md-4 pt-1">
                 Leave To <span style="color:red; font-weight:bolder;">*</span>
               </div>
-              <div class="col-md-7">
+              <div class="col-md-8">
                 <p-calendar formControlName="leaveTo" [showIcon]="true" inputId="icon"></p-calendar>
               </div>
             </div>
             <div class="row" style="margin-bottom:10px;">
-              <div class="col-md-5 pt-1">
+              <div class="col-md-4 pt-1">
                 Type of leave <span style="color:red; font-weight:bolder;">*</span>
               </div>
-              <div class="col-md-7">
+              <div class="col-md-8">
                 <p-dropdown [options]="_leavetype" formControlName="leavetype"
                             optionLabel="name" optionValue="code" placeholder="Select leave type"></p-dropdown>
               </div>
             </div>
             <div class="row" style="margin-bottom:10px;">
-              <div class="col-md-5 pt-1">
+              <div class="col-md-4 pt-1">
                 Reason for leave
               </div>
-              <div class="col-md-7">
+              <div class="col-md-8">
                 <textarea class="form-control" id="reasonforLeave"
                           formControlName="reasonforLeave" rows="3" placeholder="Enter reason here"></textarea>
                 <div *ngIf="reasonforLeave.invalid && (reasonforLeave.touched || reasonforLeave.dirty)">
