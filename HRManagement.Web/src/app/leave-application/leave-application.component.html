@@ -1,5 +1,104 @@
 <app-header></app-header>
 
 <div class="container">
-  <p>leave-application works!</p>
+  <form class="form-signup form-box" [formGroup]="leaveForm" (ngSubmit)="submitForm()">
+    <div class="card" style="border:0;">
+      <div class="form-group mb-3" style="margin-top: 50px;">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                Leave From <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <p-calendar formControlName="leaveFrom" [showIcon]="true" inputId="icon"></p-calendar>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                No of leave day(s) <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-5">
+                <input type="text" class="form-control"
+                       placeholder="number of days" formControlName="noOfDays" />
+                <div *ngIf="noOfDays.invalid && (noOfDays.touched || noOfDays.dirty)">
+                  <span class="error" *ngIf="noOfDays.errors?.required">*No Of Days is required</span>
+                  <span class="error" *ngIf="noOfDays.errors?.pattern">*Enter only Number</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                Contact number during leave <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-5">
+                <input type="text" class="form-control"
+                       placeholder="Enter number" formControlName="contactnumber" />
+                <div *ngIf="contactnumber.invalid && (contactnumber.touched || contactnumber.dirty)">
+                  <span class="error" *ngIf="contactnumber.errors?.required">*Contact number is required</span>
+                  <span class="error" *ngIf="contactnumber.errors?.pattern">*Enter only characters</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                Approved By <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-5">
+                <input type="text" class="form-control"
+                       placeholder="Enter Approver Name" formControlName="approver" />
+                <div *ngIf="approver.invalid && (approver.touched || approver.dirty)">
+                  <span class="error" *ngIf="approver.errors?.required">*Approver name is required</span>
+                  <span class="error" *ngIf="approver.errors?.pattern">*Enter only characters</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                Leave To <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <p-calendar formControlName="leaveTo" [showIcon]="true" inputId="icon"></p-calendar>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                Type of leave <span style="color:red; font-weight:bolder;">*</span>
+              </div>
+              <div class="col-md-7">
+                <p-dropdown [options]="_leavetype" formControlName="leavetype"
+                            optionLabel="name" optionValue="code" placeholder="Select leave type"></p-dropdown>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:10px;">
+              <div class="col-md-5 pt-1">
+                Reason for leave
+              </div>
+              <div class="col-md-7">
+                <textarea class="form-control" id="reasonforLeave"
+                          formControlName="reasonforLeave" rows="3" placeholder="Enter reason here"></textarea>
+                <div *ngIf="reasonforLeave.invalid && (reasonforLeave.touched || reasonforLeave.dirty)">
+                  <span class="error" *ngIf="reasonforLeave.errors?.required">*Leave reason is required</span>
+                  <span class="error" *ngIf="reasonforLeave.errors?.pattern">*Enter only characters</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 gap-2 text-end" style="margin-top: 30px; ">
+              <button class="btn btn-success btn-block" [disabled]="leaveForm.invalid"
+                      style="margin-bottom:10px; width:100px;">
+                Submit
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
 </div>

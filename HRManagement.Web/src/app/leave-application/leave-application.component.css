@@ -1,0 +1,22 @@
+:host >>> .p-button {
+  color: #ffffff;
+  background: #6c757d;
+  border: 1px solid #6c757d;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+:host >>> .p-calendar {
+  height: 35px !important;
+}
+
+:host >>> .p-dropdown {
+  height: 40px !important;
+}
+.error {
+  color: red;
+  padding-left: 8px;
+  font-size: 12px;
+}
+

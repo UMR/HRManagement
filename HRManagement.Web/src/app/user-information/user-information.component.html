@@ -185,6 +185,7 @@
                 <input *ngIf="editMode" type="text" class="form-control" placeholder="Enter Mobile Number" formControlName="mobile" />
                 <div *ngIf="editMode && mobile.invalid && (mobile.touched || mobile.dirty)">
                   <span class="error" *ngIf="mobile.errors?.required">*Mobile no is required</span>
+                  <span class="error" *ngIf="mobile.errors?.pattern">*Enter only Numbers</span>
                 </div>
               </div>
             </div>
@@ -225,7 +226,7 @@
 
             <div class="row" style="margin-bottom:10px;">
               <div class="col-md-5 text-end pt-1">
-                Height (Ft.Inch")
+                Height (Ft.Inc")
               </div>
               <div class="col-md-7">
                 <label *ngIf="!editMode" for="height" class="form-label pt-1"><b>5.6"</b></label>
