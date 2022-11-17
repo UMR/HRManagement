@@ -26,6 +26,7 @@ import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { FileService } from './services/file.service';
+import { LeaveApplicationComponent } from './leave-application/leave-application.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FileService } from './services/file.service';
     PageNotFoundComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    UserInformationComponent
+    UserInformationComponent,
+    LeaveApplicationComponent
   ],
   imports: [
     BrowserModule,

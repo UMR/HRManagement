@@ -15,6 +15,7 @@ export class UserInformationComponent implements OnInit {
   public file: any = '../../../../assets/user_icon.png';
   public profileEditForm: any;
   public editMode: boolean = false;
+  public editText: string = 'Edit Mode';
 
   public _gender: UserInformation[] = [];
   public _bloodgroup: UserInformation[] = [];
@@ -67,24 +68,24 @@ export class UserInformationComponent implements OnInit {
       district: new FormControl(null, [Validators.required]),
       division: new FormControl(null, [Validators.required]),
       postalcode: new FormControl(null, [Validators.required]),
-      mobile: new FormControl(null, [Validators.required]),
+      mobile: new FormControl(null, [Validators.required, Validators.pattern("^[0-9]*$")]),
       dob: new FormControl(null, [Validators.required]),
       bloodgroup: new FormControl(null, [Validators.required]),
-      maritalstatus: new FormControl(null, [Validators.required]),
-      height: new FormControl(null, [Validators.required]),
-      weight: new FormControl(null, [Validators.required]),
-      placeofbirth: new FormControl(null, [Validators.required]),
-      nid: new FormControl(null, [Validators.required]),
-      passport: new FormControl(null, [Validators.required]),
-      driverlicense: new FormControl(null, [Validators.required]),
-      educationalqualification: new FormControl(null, [Validators.required]),
+      maritalstatus: new FormControl(null),
+      height: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
+      weight: new FormControl(null, [Validators.pattern("^[0-9]*$")]),
+      placeofbirth: new FormControl(null),
+      nid: new FormControl(null),
+      passport: new FormControl(null),
+      driverlicense: new FormControl(null),
+      educationalqualification: new FormControl(null),
       company: new FormControl(null, [Validators.required]),
       joiningdate: new FormControl(null, [Validators.required]),
 
-      linkedinaccount: new FormControl(null, [Validators.required]),
-      gmail: new FormControl(null, [Validators.required]),
-      skype: new FormControl(null, [Validators.required]),
-      gitaccount: new FormControl(null, [Validators.required]),
+      linkedinaccount: new FormControl(null),
+      gmail: new FormControl(null),
+      skype: new FormControl(null),
+      gitaccount: new FormControl(null),
     });
   }
   get firstname() { return this.profileEditForm.get('firstname'); }
@@ -124,9 +125,11 @@ export class UserInformationComponent implements OnInit {
   editProfile() {
     if (this.editMode == false) {
       this.editMode = true;
+      this.editText = 'View Mode';
     }
     else {
       this.editMode = false;
+      this.editText = 'Edit Mode';
     }
   }
 
