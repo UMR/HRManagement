@@ -15,11 +15,14 @@
           <a class="nav-link active" aria-current="page" href="login">Login</a>
         </li>
         <li class="nav-item" *ngIf="loggedin">
+          <a class="nav-link" aria-current="page" href="hvncareers">Career</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedin">
           <a class="nav-link" aria-current="page" href="leave-application">Leave Application</a>
         </li>
         <li class="nav-item dropdown" *ngIf="loggedin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img [src]="defalutImg" style="width: 30px; height: 30px; border-radius: 50%; " />
+            <img [src]="defaultImg" style="width: 30px; height: 30px; border-radius: 50%; " />
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="user-information">Edit profile</a></li>

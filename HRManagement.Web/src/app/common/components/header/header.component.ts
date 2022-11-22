@@ -9,13 +9,12 @@ import { FileService } from '../../../services/file.service';
 })
 export class HeaderComponent implements OnInit {
   public loggedin: boolean = false;
-  public defalutImg: any = '../../../../assets/user_icon.png';
+  public defaultImg: any = '../../../../assets/user_icon.png';
 
   constructor(private router: Router, private fileService: FileService) {
-    
     this.fileService.getFile().subscribe((value: string) => {
       if (value) {
-        this.defalutImg = value;
+        this.defaultImg = value;
       }
     })
   }

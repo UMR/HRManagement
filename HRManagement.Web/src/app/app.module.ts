@@ -27,6 +27,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { FileService } from './services/file.service';
 import { LeaveApplicationComponent } from './leave-application/leave-application.component';
+import { HvncareersComponent } from './hvncareers/hvncareers.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LeaveApplicationComponent } from './leave-application/leave-application
     ForgotPasswordComponent,
     ChangePasswordComponent,
     UserInformationComponent,
-    LeaveApplicationComponent
+    LeaveApplicationComponent,
+    HvncareersComponent
   ],
   imports: [
     BrowserModule,
