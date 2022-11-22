@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
-using FluentValidation.AspNetCore;
 using HRManagement.Application.Behaviours;
-using HRManagement.Application.Contracts.Infrastructure;
 using HRManagement.Application.Mappings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

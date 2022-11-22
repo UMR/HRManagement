@@ -1,9 +1,8 @@
-﻿using HRManagement.Application.Contracts.Infrastructure;
+﻿using HRManagement.Application.Contracts;
 using HRManagement.Domain.Common;
 using HRManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
 using System.Reflection;
 
 namespace HRManagement.Infrastructure.Persistence.Data
@@ -19,6 +18,8 @@ namespace HRManagement.Infrastructure.Persistence.Data
             _dateTime = dateTime;
         }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

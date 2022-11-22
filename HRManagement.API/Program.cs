@@ -1,7 +1,7 @@
 using HRManagement.API.Filters;
 using HRManagement.API.Services;
 using HRManagement.Application;
-using HRManagement.Application.Contracts.Infrastructure;
+using HRManagement.Application.Contracts;
 using HRManagement.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);

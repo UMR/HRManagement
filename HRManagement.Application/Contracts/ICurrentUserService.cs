@@ -1,4 +1,4 @@
-﻿namespace HRManagement.Application.Contracts.Infrastructure
+﻿namespace HRManagement.Application.Contracts
 {
     public interface ICurrentUserService
     {

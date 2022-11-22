@@ -1,6 +1,6 @@
 ﻿namespace HRManagement.Application.Dtos.Identities
 {
-    public class AuthenticationResult
+    public class AuthResult
     {
         public string Token { get; set; }
         public bool Success { get; set; }

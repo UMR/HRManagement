@@ -19,16 +19,21 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
             return await _dbContext.Users.FindAsync(id);
         }
 
+        public async Task<User> GetUserByEmailAsync(string email) 
+        {
+            return await _dbContext.Users.FirstOrDefaultAsync(u=>u.Email == email.ToLower());
+        }
+
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
             return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<int> CreateUserAsync(User user)
+        public async Task<User> CreateUserAsync(User user)
         {
             await _dbContext.Users.AddAsync(user);
-            var result = await _dbContext.SaveChangesAsync();
-            return user.Id;
+            await _dbContext.SaveChangesAsync();
+            return user;
         }
 
         public async Task<bool> UpdateUserAsync(User user)

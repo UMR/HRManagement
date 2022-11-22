@@ -8,7 +8,9 @@ namespace HRManagement.Application.Contracts.Persistence
 
         Task<User> GetUserByIdAsync(int id);
 
-        Task<int> CreateUserAsync(User user);
+        Task<User> GetUserByEmailAsync(string email);
+
+        Task<User> CreateUserAsync(User user);
 
         Task<bool> UpdateUserAsync(User user);
 

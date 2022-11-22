@@ -1,4 +1,4 @@
-﻿using HRManagement.Application.Contracts.Infrastructure;
+﻿using HRManagement.Application.Contracts;
 
 namespace HRManagement.Infrastructure.Services
 {

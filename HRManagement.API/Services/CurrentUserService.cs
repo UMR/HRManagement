@@ -1,4 +1,4 @@
-﻿using HRManagement.Application.Contracts.Infrastructure;
+﻿using HRManagement.Application.Contracts;
 using System.Security.Claims;
 
 namespace HRManagement.API.Services
@@ -18,7 +18,7 @@ namespace HRManagement.API.Services
             {
                 return Convert.ToInt32(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
             }
-        }
+        }        
     }
 
 }
