@@ -18,24 +18,20 @@ namespace HRManagement.Application.Features.Users.Commands
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AuthResult>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IRefreshTokenRepository _refreshTokenRepository;
-        private readonly IMapper _mapper;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;        
         private readonly IPasswordHasher _passwordHasher;
-        private readonly ITokenGenerator _tokenGenerator;
-        private readonly JwtSettings _jwtSettings;
+        private readonly ITokenGenerator _tokenGenerator;        
 
         public CreateUserCommandHandler(IUserRepository userRepository,
-            IRefreshTokenRepository refreshTokenRepository, 
+            IRefreshTokenRepository refreshTokenRepository,
             IMapper mapper, IPasswordHasher passwordHasher,
             ITokenGenerator tokenGenerator,
             JwtSettings jwtSettings)
         {
             _userRepository = userRepository;
-            _refreshTokenRepository = refreshTokenRepository;
-            _mapper = mapper;
+            _refreshTokenRepository = refreshTokenRepository;           
             _passwordHasher = passwordHasher;
-            _tokenGenerator = tokenGenerator;
-            _jwtSettings = jwtSettings;
+            _tokenGenerator = tokenGenerator;            
         }
 
         public async Task<AuthResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -44,13 +40,14 @@ namespace HRManagement.Application.Features.Users.Commands
             var validator = new CreateUserDtoValidator();
             var validationResult = await validator.ValidateAsync(request.CreateUserDto);
 
-            if (!validationResult.IsValid) 
+            if (!validationResult.IsValid)
             {
                 return new AuthResult
                 {
                     Success = false,
                     Token = String.Empty,
-                    RefreshToken = String.Empty
+                    RefreshToken = String.Empty,
+                    Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList()
                 };
             }
 
@@ -60,6 +57,9 @@ namespace HRManagement.Application.Features.Users.Commands
             {
                 return new AuthResult
                 {
+                    Success = false,
+                    Token = String.Empty,
+                    RefreshToken = String.Empty,
                     Errors = new[] { "User with this email address already exist" }
                 };
             }
@@ -75,13 +75,13 @@ namespace HRManagement.Application.Features.Users.Commands
                 PasswordSalt = passwordSalt
             };
 
-            var createdUser = await _userRepository.CreateUserAsync(userRequest);
-            var token = _tokenGenerator.GenerateToken(createdUser, String.Empty, String.Empty, String.Empty);
+            var createdUser = await _userRepository.CreateUserAsync(newUser);
+            var token = _tokenGenerator.GenerateToken(createdUser);
 
             var refreshToken = new RefreshToken
             {
                 JwtId = token.Id,
-                Id = createdUser.Id,
+                UserId = createdUser.Id,
                 CreatedDate = DateTime.Now,
                 ExpiryDate = DateTime.Now.AddMinutes(5)
             };

@@ -1,5 +1,6 @@
 ﻿using HRManagement.Application.Contracts;
 using HRManagement.Application.Dtos.Tokens;
+using HRManagement.Application.Options;
 using HRManagement.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,7 +11,14 @@ namespace HRManagement.Infrastructure.Services
 {
     public class TokenGenerator: ITokenGenerator
     {
-        public TokenResult GenerateToken(User user, string secret, string issuer, string audience)
+        private readonly JwtSettings _jwtSettings;
+
+        public TokenGenerator(JwtSettings jwtSettings)
+        {
+            _jwtSettings = jwtSettings;
+        }
+
+        public TokenResult GenerateToken(User user)
         {
             var claims = new[]
                 {
@@ -21,14 +29,14 @@ namespace HRManagement.Infrastructure.Services
                 };
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(secret);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddHours(1),
-                Issuer = issuer,
-                Audience = audience,
+                Issuer = _jwtSettings.Issuer,
+                Audience = _jwtSettings.Audience,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512)
             };
 

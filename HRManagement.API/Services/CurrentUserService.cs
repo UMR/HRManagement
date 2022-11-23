@@ -16,7 +16,8 @@ namespace HRManagement.API.Services
         {
             get 
             {
-                return Convert.ToInt32(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
+                string userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+                return !string.IsNullOrEmpty(userId) ? Convert.ToInt32(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier)) : null;
             }
         }        
     }
