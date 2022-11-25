@@ -20,9 +20,4 @@
 		<ProjectReference Include="..\HRManagement.Doamin\HRManagement.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Features\Identities\Commands\" />
-	  <Folder Include="Features\Identities\Validators\" />
-	</ItemGroup>
-
 </Project>

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagement.API.Controllers.V1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class UsersController : ApiControllerBase
     {
@@ -21,7 +21,7 @@ namespace HRManagement.API.Controllers.V1
             return await Mediator.Send(new GetUserByIdQuery { Id = id });
         }
 
-        [HttpPost]
+        [HttpPost(Name = "CreateUser")]
         public async Task<ActionResult> AddUser([FromBody] CreateUserDto createUserDto)
         {
             var command = new CreateUserCommand { CreateUserDto = createUserDto };
@@ -29,7 +29,7 @@ namespace HRManagement.API.Controllers.V1
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut(Name = "UpdateUser")]
         public async Task<ActionResult> UpdateUser([FromBody] UpdateUserDto updateUserDto)
         {
             var command = new UpdateUserCommand { UpdateUserDto = updateUserDto };

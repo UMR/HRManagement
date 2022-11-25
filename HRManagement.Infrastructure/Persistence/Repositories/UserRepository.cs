@@ -29,6 +29,13 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
             return await _dbContext.Users.ToListAsync();
         }
 
+        public async Task<User> CheckPasswordAsync(User user, string passwordHash, string passwordSalt)
+        {
+            var userFromRepo = await GetUserByEmailAsync(user.Email);
+            await _dbContext.SaveChangesAsync();
+            return user;
+        }
+
         public async Task<User> CreateUserAsync(User user)
         {
             await _dbContext.Users.AddAsync(user);
