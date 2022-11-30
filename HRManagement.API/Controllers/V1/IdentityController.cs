@@ -1,4 +1,5 @@
 ﻿using HRManagement.Application.Dtos.Identities;
+using HRManagement.Application.Dtos.RefreshTokens;
 using HRManagement.Application.Features.Identities.Commands;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,14 @@ namespace HRManagement.API.Controllers.V1
         public async Task<ActionResult> Login([FromBody] LoginDto loginDto)
         {
             var command = new LoginCommand { LoginDto = loginDto };
+            var response = await Mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPost("RefreshToken")]
+        public async Task<ActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
+        {
+            var command = new RefreshTokenCommand { RefreshTokenDto = refreshTokenDto };
             var response = await Mediator.Send(command);
             return Ok(response);
         }

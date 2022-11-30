@@ -8,6 +8,8 @@ namespace HRManagement.Application.Contracts.Persistence
 
         Task<RefreshToken> GetRefreshTokenByIdAsync(int id);
 
+        Task<RefreshToken> GetRefreshTokenByTokenAsync(string token);
+
         Task<bool> CreateRefreshTokenAsync(RefreshToken refreshToken);
 
         Task<bool> UpdateRefreshTokenAsync(RefreshToken refreshToken);

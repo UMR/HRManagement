@@ -24,6 +24,11 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
             return await _dbContext.RefreshTokens.FindAsync(id);
         }
 
+        public async Task<RefreshToken> GetRefreshTokenByTokenAsync(string refreshToken) 
+        {
+            return await _dbContext.RefreshTokens.FirstOrDefaultAsync(r=>r.Token == refreshToken);
+        }
+
         public async Task<bool> CreateRefreshTokenAsync(RefreshToken refreshToken)
         {
             await _dbContext.RefreshTokens.AddAsync(refreshToken);

@@ -79,8 +79,8 @@ namespace HRManagement.Application.Features.Identities.Commands
             {
                 JwtId = token.Id,
                 UserId = userRequest.Id,
-                CreatedDate = DateTime.Now,
-                ExpiryDate = DateTime.Now.AddMinutes(5)
+                CreatedDate = DateTime.UtcNow,
+                ExpiryDate = DateTime.UtcNow.AddMonths(6)
             };
 
             await _refreshTokenRepository.CreateRefreshTokenAsync(refreshToken);
