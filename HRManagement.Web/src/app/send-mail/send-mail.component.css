@@ -1,0 +1,39 @@
+
+body {
+}
+
+.form-signup {
+  margin: 0 auto;
+  background-color: white;
+  padding: 25px;
+}
+
+  .form-signup h5 {
+    padding-bottom: 20px;
+  }
+
+/*.form-box {
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0,0, 0, 0.2), 0 5px 5px 0 rgba(0,0, 0, 0.24);
+}
+*/
+.login {
+  padding-top: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  padding-left: 8px;
+  font-size: 12px;
+}
+
+
+:host >>> .p-dropdown {
+  height: 40px !important;
+}

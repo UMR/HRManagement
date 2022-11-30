@@ -8,6 +8,7 @@ import { LeaveApplicationComponent } from './leave-application/leave-application
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { SendMailComponent } from './send-mail/send-mail.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
     path: 'page-not-found',
     component: PageNotFoundComponent
   }, 
+  {
+    path: 'send-mail',
+    component: SendMailComponent
+  },
   {
     path: 'hvncareers',
     component: HvncareersComponent
