@@ -1,6 +1,6 @@
-﻿using HRManagement.Application.Dtos.Identities;
+﻿using HRManagement.Application.Contracts.Services;
+using HRManagement.Application.Dtos.Identities;
 using HRManagement.Application.Dtos.RefreshTokens;
-using HRManagement.Application.Features.Identities.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -10,28 +10,29 @@ namespace HRManagement.API.Controllers.V1
     [ApiController]
     public class IdentityController : ApiControllerBase
     {
+        private readonly IdentityService _identityService;
+
+        public IdentityController(IdentityService identityService)
+        {
+            _identityService = identityService;
+        }
+
         [HttpPost("Register")]
         public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
-        {
-            var command = new RegisterCommand { RegisterDto = registerDto };
-            var response = await Mediator.Send(command);
-            return Ok(response);
+        {            
+            return Ok(await _identityService.RegisterAsync(registerDto));
         }
 
         [HttpPost("Login")]
         public async Task<ActionResult> Login([FromBody] LoginDto loginDto)
         {
-            var command = new LoginCommand { LoginDto = loginDto };
-            var response = await Mediator.Send(command);
-            return Ok(response);
+            return Ok(await _identityService.LoginAsync(loginDto));
         }
 
         [HttpPost("RefreshToken")]
         public async Task<ActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
         {
-            var command = new RefreshTokenCommand { RefreshTokenDto = refreshTokenDto };
-            var response = await Mediator.Send(command);
-            return Ok(response);
+            return Ok(await _identityService.RefreshTokenAsync(refreshTokenDto));
         }
     }
 }
