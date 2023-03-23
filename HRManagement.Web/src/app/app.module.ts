@@ -30,6 +30,7 @@ import { LeaveApplicationComponent } from './leave-application/leave-application
 import { HvncareersComponent } from './hvncareers/hvncareers.component';
 import { SendMailComponent } from './send-mail/send-mail.component';
 import { RegistrationService } from './registration/registration.service';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,12 @@ import { RegistrationService } from './registration/registration.service';
     MessagesModule,
     MessageModule
   ],
-  providers: [NoticeService, MessageService, FileService, RegistrationService],
+  providers: [NoticeService,
+    MessageService,
+    FileService,
+    RegistrationService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

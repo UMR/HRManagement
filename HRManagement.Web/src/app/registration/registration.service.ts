@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpBackend, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { resourceServerUrl } from '../common/urls/registration';
+import { resourceServerUrl } from '../common/urls/auth-keys';
 import { Observable } from 'rxjs';
 import { RegistrationModel } from '../common/models/registration';
 
