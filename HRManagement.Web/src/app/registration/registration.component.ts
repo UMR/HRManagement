@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { RegistrationModel } from '../common/models/registration';
+import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -9,15 +12,21 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  registerForm: any;
+  public regModel: RegistrationModel[] = [];
+  public isLoading: boolean = false;
+  public registerForm: any;
+  public submitted = false;
+  private emailRegEx = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder,
+    private regService: RegistrationService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       firstname: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       lastname: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      emailId: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, Validators.pattern(this.emailRegEx)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl(null, [Validators.required])
     },
@@ -28,7 +37,7 @@ export class RegistrationComponent implements OnInit {
 
   get firstname() { return this.registerForm.get('firstname'); }
   get lastname() { return this.registerForm.get('lastname'); }
-  get emailId() { return this.registerForm.get('emailId'); }
+  get email() { return this.registerForm.get('email'); }
   get password() { return this.registerForm.get('password'); }
   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
@@ -55,11 +64,28 @@ export class RegistrationComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.registerForm.value);
-
-    if (this.registerForm.valid) {
-      alert(`${this.registerForm.value.firstname} has been registered.`);
-      this.registerForm.reset();
+    this.submitted = true;
+    if (!this.registerForm.invalid) {
+      this.isLoading = true;
+      this.messageService.clear();
+      this.regModel = [];
+      this.regModel.push({
+        FirstName: this.registerForm.controls['firstname'].value,
+        LastName: this.registerForm.controls['lastname'].value,
+        Email: this.registerForm.controls['email'].value,
+        Password: this.registerForm.controls['password'].value
+      })
+      this.regService.registration(this.regModel[0])
+        .subscribe(data => {
+          this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Registration Successful', detail: '' });
+        },
+          err => {
+            this.isLoading = false;
+            this.messageService.add({ key: 'toastKey1', severity: 'error', summary: 'Registration failed', detail: '' });
+          },
+          () => {
+            this.isLoading = false;
+          });
     }
   }
 }

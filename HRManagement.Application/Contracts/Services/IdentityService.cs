@@ -21,9 +21,8 @@ namespace HRManagement.Application.Contracts.Services
 
         public IdentityService(IUserRepository userRepository,
             IRefreshTokenRepository refreshTokenRepository,
-            IMapper mapper, IPasswordHasher passwordHasher,
+            IPasswordHasher passwordHasher,
             ITokenGenerator tokenGenerator,
-            JwtSettings jwtSettings,
             TokenValidationParameters tokenValidationParameters)
         {
             _userRepository = userRepository;

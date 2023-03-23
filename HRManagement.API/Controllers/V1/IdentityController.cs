@@ -10,9 +10,9 @@ namespace HRManagement.API.Controllers.V1
     [ApiController]
     public class IdentityController : ApiControllerBase
     {
-        private readonly IdentityService _identityService;
+        private readonly IIdentityService _identityService;
 
-        public IdentityController(IdentityService identityService)
+        public IdentityController(IIdentityService identityService)
         {
             _identityService = identityService;
         }

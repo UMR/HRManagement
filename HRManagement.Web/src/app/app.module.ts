@@ -29,6 +29,7 @@ import { FileService } from './services/file.service';
 import { LeaveApplicationComponent } from './leave-application/leave-application.component';
 import { HvncareersComponent } from './hvncareers/hvncareers.component';
 import { SendMailComponent } from './send-mail/send-mail.component';
+import { RegistrationService } from './registration/registration.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { SendMailComponent } from './send-mail/send-mail.component';
     MessagesModule,
     MessageModule
   ],
-  providers: [NoticeService, MessageService, FileService],
+  providers: [NoticeService, MessageService, FileService, RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

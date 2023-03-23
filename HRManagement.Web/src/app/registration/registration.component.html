@@ -23,10 +23,10 @@
         </div>
       </div>
       <div class="form-group mb-3">
-        <input type="email" class="form-control" placeholder="Enter Email Address" formControlName="emailId" />
-        <div *ngIf="emailId.invalid && (emailId.touched || emailId.dirty)">
-          <span class="error" *ngIf="emailId.errors?.required">*Email address is required</span>
-          <span class="error" *ngIf="emailId.errors?.email">*Enter a valid Email address</span>
+        <input type="email" class="form-control" placeholder="Enter Email Address" formControlName="email" />
+        <div *ngIf="email.invalid && (email.touched || email.dirty)">
+          <span class="error" *ngIf="email.errors?.required">*Email address is required</span>
+          <span class="error" *ngIf="email.errors?.email">*Enter a valid Email address</span>
         </div>
       </div>
       <div class="form-group mb-3">

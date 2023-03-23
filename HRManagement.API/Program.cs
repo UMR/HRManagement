@@ -4,6 +4,7 @@ using HRManagement.Application;
 using HRManagement.Application.Contracts;
 using HRManagement.Persistence;
 
+var CorsPolicy = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
@@ -13,7 +14,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCors(o =>
 {
-    o.AddPolicy("CorsPolicy",
+    o.AddPolicy(CorsPolicy,
         builder => builder.AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader());
@@ -36,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(CorsPolicy);
 
 app.UseAuthorization();
 
