@@ -11,6 +11,14 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddCors(o =>
+{
+    o.AddPolicy("CorsPolicy",
+        builder => builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
+
 builder.Services.AddControllers(config => {
     config.Filters.Add<ApiExceptionFilterAttribute>();
 });
