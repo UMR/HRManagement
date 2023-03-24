@@ -77,6 +77,7 @@ export class RegistrationComponent implements OnInit {
       })
       this.regService.registration(this.regModel[0])
         .subscribe(data => {
+          this.registerForm.reset();
           this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Registration Successful', detail: '' });
         },
           err => {

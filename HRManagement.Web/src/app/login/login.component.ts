@@ -38,9 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.lsIsLoggedin = 'logged in';
-    localStorage.setItem('loggedinData', this.lsIsLoggedin);
-    this.goToPage('');
     this.submitted = true;
 
     if (!this.loginForm.invalid) {
@@ -54,7 +51,13 @@ export class LoginComponent implements OnInit {
 
       this.loginService.login(this.loginModel[0])
         .subscribe(data => {
-          this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Login Successful', detail: '' });
+          this.loginForm.reset();
+          if ((data as any).success) {
+            this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Login Successful', detail: '' });
+            this.lsIsLoggedin = 'logged in';
+            localStorage.setItem('loggedinData', this.lsIsLoggedin);
+            this.goToPage('');
+          }
         },
           err => {
             this.isLoading = false;

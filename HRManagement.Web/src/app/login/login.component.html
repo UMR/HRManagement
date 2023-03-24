@@ -1,9 +1,8 @@
 <app-header></app-header>
 
-
 <body>
   <div class="container">
-    <form class="form-signup form-box"  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form class="form-signup form-box" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h2>Login</h2>
       <div class="form-group mb-3">
         <input type="email" class="form-control" placeholder="Enter Email Address" formControlName="email" />
@@ -33,3 +32,4 @@
     </form>
   </div>
 </body>
+<p-toast key="toastKey1"></p-toast>

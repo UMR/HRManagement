@@ -24,6 +24,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { UserInformationComponent } from './user-information/user-information.component';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { FileService } from './services/file.service';
 import { LeaveApplicationComponent } from './leave-application/leave-application.component';
@@ -60,7 +61,8 @@ import { LoginService } from './login/login.service';
     AccordionModule,
     FileUploadModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ToastModule
   ],
   providers: [NoticeService,
     MessageService,
