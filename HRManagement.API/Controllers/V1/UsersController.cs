@@ -1,7 +1,5 @@
 ﻿using HRManagement.Application.Contracts.Services;
 using HRManagement.Application.Dtos.Users;
-using HRManagement.Application.Features.Users.Commands;
-using HRManagement.Application.Features.Users.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagement.API.Controllers.V1
@@ -11,10 +9,12 @@ namespace HRManagement.API.Controllers.V1
     public class UsersController : ApiControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IIdentityService _identityService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IIdentityService identityService)
         {
             _userService = userService;
+            _identityService = identityService;
         }
 
         [HttpGet(Name = "GetUsers")]
@@ -27,29 +27,19 @@ namespace HRManagement.API.Controllers.V1
         public async Task<ActionResult<UserForListDto>> GetUser(int id)
         {
             return await _userService.GetUserByIdAsync(id);
-        }
-
-        [HttpPost(Name = "CreateUser")]
-        public async Task<ActionResult> AddUser([FromBody] UserForCreateDto createUserDto)
-        {
-            var command = new CreateUserCommand { CreateUserDto = createUserDto };
-            var response = await Mediator.Send(command);
-            return Ok(response);
-        }
+        }        
 
         [HttpPut(Name = "UpdateUser")]
         public async Task<ActionResult> UpdateUser([FromBody] UserForUpdaterDto updateUserDto)
         {
-            var command = new UpdateUserCommand { UpdateUserDto = updateUserDto };
-            var response = await Mediator.Send(command);
+            var response = await _userService.UpdateUser(updateUserDto);
             return Ok(response);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
-            var command = new DeleteUserCommand { UserId = id };
-            var response = await Mediator.Send(command);
+            var response = await _userService.DeleteUser(id);
             return Ok(response);
         }
     }

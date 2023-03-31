@@ -9,6 +9,8 @@ namespace HRManagement.Application.Contracts.Services
 
         Task<List<UserForListDto>> GetUsersAsync();
 
+        Task<BaseCommandResponse> UpdateUser(UserForUpdaterDto userForUpdaterDto);
+
         Task<BaseCommandResponse> DeleteUser(int userId);
         
     }
