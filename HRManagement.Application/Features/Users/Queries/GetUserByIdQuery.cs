@@ -5,11 +5,11 @@ using MediatR;
 
 namespace HRManagement.Application.Features.Users.Queries
 {
-    public record GetUserByIdQuery : IRequest<UserDto>
+    public record GetUserByIdQuery : IRequest<UserForListDto>
     {
         public int Id { get; set; }
     }
-    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
+    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserForListDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -20,10 +20,10 @@ namespace HRManagement.Application.Features.Users.Queries
             _mapper = mapper;
         }
 
-        public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+        public async Task<UserForListDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var userFromRepo = await _userRepository.GetUserByIdAsync(request.Id);
-            return _mapper.Map<UserDto>(userFromRepo);
+            return _mapper.Map<UserForListDto>(userFromRepo);
         }
     }
 }

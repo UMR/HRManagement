@@ -8,9 +8,9 @@ namespace HRManagement.Application.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<User, CreateUserDto>().ReverseMap();
-            CreateMap<User, UpdateUserDto>().ReverseMap();
+            CreateMap<User, UserForListDto>().ReverseMap();
+            CreateMap<User, UserForCreateDto>().ReverseMap();
+            CreateMap<User, UserForUpdaterDto>().ReverseMap();
         }
     }
 }

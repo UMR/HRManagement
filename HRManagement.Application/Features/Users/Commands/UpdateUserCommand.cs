@@ -11,7 +11,7 @@ namespace HRManagement.Application.Features.Users.Commands
 {
     public record UpdateUserCommand : IRequest<BaseCommandResponse>
     {
-        public UpdateUserDto UpdateUserDto { get; set; }
+        public UserForUpdaterDto UpdateUserDto { get; set; }
     }
 
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, BaseCommandResponse>

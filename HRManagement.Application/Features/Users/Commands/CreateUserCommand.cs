@@ -12,7 +12,7 @@ namespace HRManagement.Application.Features.Users.Commands
 {
     public record CreateUserCommand : IRequest<AuthResult>
     {
-        public CreateUserDto CreateUserDto { get; set; }
+        public UserForCreateDto CreateUserDto { get; set; }
     }
 
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AuthResult>

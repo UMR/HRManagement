@@ -1,6 +1,6 @@
 ﻿namespace HRManagement.Application.Dtos.Users
 {
-    public class UpdateUserDto
+    public class UserForUpdaterDto
     {
         public int Id { get; set; }
 

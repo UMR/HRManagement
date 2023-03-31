@@ -3,7 +3,7 @@ using HRManagement.Application.Dtos.Users;
 
 namespace HRManagement.Application.Features.Users.Validators
 {
-    public class CreateUserDtoValidator : AbstractValidator<CreateUserDto>
+    public class CreateUserDtoValidator : AbstractValidator<UserForCreateDto>
     {
         public CreateUserDtoValidator()
         {

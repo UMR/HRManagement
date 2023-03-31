@@ -1,6 +1,6 @@
 ﻿namespace HRManagement.Application.Dtos.Users
 {
-    public class CreateUserDto
+    public class UserForCreateDto
     {
         public string FirstName { get; set; }
 
