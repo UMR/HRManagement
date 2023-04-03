@@ -19,6 +19,7 @@ namespace HRManagement.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IUserService, UserService>();
 
             return services;
         }
