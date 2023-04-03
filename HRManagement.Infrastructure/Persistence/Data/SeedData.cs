@@ -1,40 +1,45 @@
 ﻿using HRManagement.Application.Contracts;
+using HRManagement.Application.Dtos.Identities;
 using HRManagement.Domain.Entities;
+using HRManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HRManagement.Infrastructure.Persistence.Data
 {
-    public static class SeedData
+    public class SeedData
     {
-        //private readonly IPasswordHasher _passwordHasher;
-        //public static void PopulateDb(IApplicationBuilder app, IPasswordHasher passwordHasher)
-        //{
-        //    _passwordHasher = passwordHasher;
-        //    using var serviceScope = app.ApplicationServices.CreateScope();
-        //    AddInitialData(serviceScope.ServiceProvider.GetService<HRDbContext>()!);
-        //}
+        public static void PopulateDb(IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices.CreateScope();
+            AddInitialData(serviceScope.ServiceProvider.GetService<HRDbContext>(), serviceScope.ServiceProvider.GetService<IPasswordHasher>());
+        }
 
-        //private static void AddInitialData(HRDbContext context)
-        //{
-        //    context.Database.EnsureCreated();
+        private static void AddInitialData(HRDbContext context, IPasswordHasher passwordHasher)
+        {
+            context.Database.EnsureCreated();
 
-        //    if (!context.Users.Any())
-        //    {
-        //        var orders = new List<User>()
-        //        {
-        //            new User
-        //            {
-        //                FirstName = "Captain",
-        //                LastName = "Black",
-        //                Email = "test@test.com",
-        //                PasswordHash
-        //            }                    
-        //        };
+            if (!context.Users.Any())
+            {
+                byte[] passwordHash, passwordSalt;
 
-        //        context.Users.AddRange(orders);
-        //        context.SaveChanges();
-        //    }
-        //}
+                passwordHasher.CreatePasswordHash("123456", out passwordHash, out passwordSalt);
+
+                var orders = new List<User>()
+                {
+                    new User
+                    {
+                        FirstName = "Captain",
+                        LastName = "Black",
+                        Email = "test@test.com",
+                        PasswordHash=passwordHash,
+                        PasswordSalt=passwordSalt
+                    }
+                };
+
+                context.Users.AddRange(orders);
+                context.SaveChanges();
+            }
+        }
     }
 }

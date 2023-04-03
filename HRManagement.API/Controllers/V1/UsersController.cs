@@ -8,13 +8,11 @@ namespace HRManagement.API.Controllers.V1
     [ApiController]
     public class UsersController : ApiControllerBase
     {
-        private readonly IUserService _userService;
-        private readonly IIdentityService _identityService;
+        private readonly IUserService _userService;        
 
-        public UsersController(IUserService userService, IIdentityService identityService)
+        public UsersController(IUserService userService)
         {
-            _userService = userService;
-            _identityService = identityService;
+            _userService = userService;    
         }
 
         [HttpGet(Name = "GetUsers")]

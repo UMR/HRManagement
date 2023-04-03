@@ -2,6 +2,7 @@ using HRManagement.API.Filters;
 using HRManagement.API.Services;
 using HRManagement.Application;
 using HRManagement.Application.Contracts;
+using HRManagement.Infrastructure.Persistence.Data;
 using HRManagement.Persistence;
 
 var CorsPolicy = "CorsPolicy";
@@ -31,6 +32,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+SeedData.PopulateDb(app);
 
 if (app.Environment.IsDevelopment())
 {
