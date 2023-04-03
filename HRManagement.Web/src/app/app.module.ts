@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
@@ -32,6 +32,7 @@ import { HvncareersComponent } from './hvncareers/hvncareers.component';
 import { SendMailComponent } from './send-mail/send-mail.component';
 import { RegistrationService } from './registration/registration.service';
 import { LoginService } from './login/login.service';
+import { TokenInterceptorService } from './common/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { LoginService } from './login/login.service';
     MessageService,
     FileService,
     RegistrationService,
-    LoginService
+    LoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
 })

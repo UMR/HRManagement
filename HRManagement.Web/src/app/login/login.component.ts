@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   public loginForm: any;
   public submitted = false;
   private emailRegEx = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  private bearerToken: string= "";
 
   constructor(private router: Router, private formBuilder: FormBuilder,
     private loginService: LoginService,
@@ -56,7 +57,11 @@ export class LoginComponent implements OnInit {
             this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Login Successful', detail: '' });
             this.lsIsLoggedin = 'logged in';
             localStorage.setItem('loggedinData', this.lsIsLoggedin);
+            localStorage.setItem('bearerToken', (data as any).token);
             this.goToPage('');
+          }
+          else {
+            this.messageService.add({ key: 'toastKey1', severity: 'error', summary: (data as any).errors[0], detail: '' });
           }
         },
           err => {
