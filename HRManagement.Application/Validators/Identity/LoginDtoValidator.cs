@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using HRManagement.Application.Dtos.Identities;
 
-namespace HRManagement.Application.Validators
+namespace HRManagement.Application.Validators.Identity
 {
     public class LoginDtoValidator : AbstractValidator<LoginDto>
     {

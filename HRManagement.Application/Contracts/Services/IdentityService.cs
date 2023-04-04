@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using HRManagement.Application.Contracts.Persistence;
+﻿using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Dtos.Identities;
 using HRManagement.Application.Dtos.RefreshTokens;
-using HRManagement.Application.Features.Identities.Validators;
-using HRManagement.Application.Options;
+using HRManagement.Application.Validators;
+using HRManagement.Application.Validators.Identity;
 using HRManagement.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

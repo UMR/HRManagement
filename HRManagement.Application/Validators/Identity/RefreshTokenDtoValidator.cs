@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using HRManagement.Application.Dtos.RefreshTokens;
 
-namespace HRManagement.Application.Validators
+namespace HRManagement.Application.Validators.Identity
 {
     public class RefreshTokenDtoValidator : AbstractValidator<RefreshTokenDto>
     {
@@ -14,7 +14,7 @@ namespace HRManagement.Application.Validators
             RuleFor(c => c.RefreshToken)
               .NotEmpty().WithMessage("{PropertyName} is required.")
               .NotNull();
-              
+
         }
     }
 }

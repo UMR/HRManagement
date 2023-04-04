@@ -2,8 +2,7 @@
 using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Dtos.Users;
 using HRManagement.Application.Exceptions;
-using HRManagement.Application.Features.Users.Commands;
-using HRManagement.Application.Features.Users.Validators;
+using HRManagement.Application.Validators.Users;
 using HRManagement.Application.Wrapper;
 using HRManagement.Domain.Entities;
 
