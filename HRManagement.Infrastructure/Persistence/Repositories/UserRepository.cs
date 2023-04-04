@@ -26,7 +26,7 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
-            return await _dbContext.Users.ToListAsync();
+            return await _dbContext.Users.AsNoTracking().ToListAsync();
         }
 
         public async Task<User> CheckPasswordAsync(User user, string passwordHash, string passwordSalt)
