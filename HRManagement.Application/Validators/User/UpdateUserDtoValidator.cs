@@ -7,26 +7,26 @@ namespace HRManagement.Application.Validators.Users
     {
         public UpdateUserDtoValidator()
         {
-            RuleFor(c => c.Id)
+            RuleFor(u => u.Id)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
 
-            RuleFor(c => c.FirstName)
+            RuleFor(u => u.FirstName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(128).WithMessage("{PropertyName} must not exceed 128 characters");
 
-            RuleFor(c => c.LastName)
+            RuleFor(u => u.LastName)
                .NotEmpty().WithMessage("{PropertyName} is required.")
                .NotNull()
                .MaximumLength(1024).WithMessage("{PropertyName} must not exceed 128 characters");
 
-            RuleFor(c => c.Email)
+            RuleFor(u => u.Email)
               .NotEmpty().WithMessage("{PropertyName} is required.")
               .NotNull()
               .MaximumLength(1024).WithMessage("{PropertyName} must not exceed 256 characters");
 
-            RuleFor(c => c.Password)
+            RuleFor(u => u.Password)
               .NotEmpty().WithMessage("{PropertyName} is required.")
               .NotNull()
               .MaximumLength(1024).WithMessage("{PropertyName} must not exceed 128 characters");

@@ -201,7 +201,7 @@ namespace HRManagement.Application.Contracts.Services
 
             var token = _tokenGenerator.GenerateToken(user);
 
-            var refreshToken = new RefreshToken
+            var refreshTokenToCreate = new RefreshToken
             {
                 JwtId = token.Id,
                 UserId = user.Id,
@@ -209,13 +209,13 @@ namespace HRManagement.Application.Contracts.Services
                 ExpiryDate = DateTime.UtcNow.AddMinutes(5)
             };
 
-            await _refreshTokenRepository.CreateRefreshTokenAsync(refreshToken);
+            await _refreshTokenRepository.CreateRefreshTokenAsync(refreshTokenToCreate);
 
             return new AuthResult
             {
                 Success = true,
                 Token = token.Token,
-                RefreshToken = refreshToken.Token
+                RefreshToken = refreshTokenToCreate.Token
             };
         }
 
@@ -251,7 +251,7 @@ namespace HRManagement.Application.Contracts.Services
 
             _passwordHasher.CreatePasswordHash(registerDto.Password, out passwordHash, out passwordSalt);
 
-            var newUser = new User
+            var userToCreate = new User
             {
                 FirstName = registerDto.FirstName,
                 LastName = registerDto.LastName,
@@ -260,10 +260,10 @@ namespace HRManagement.Application.Contracts.Services
                 PasswordSalt = passwordSalt
             };
 
-            var createdUser = await _userRepository.CreateUserAsync(newUser);
+            var createdUser = await _userRepository.CreateUserAsync(userToCreate);
             var token = _tokenGenerator.GenerateToken(createdUser);
 
-            var refreshToken = new RefreshToken
+            var refreshTokenToCreate = new RefreshToken
             {
                 JwtId = token.Id,
                 UserId = createdUser.Id,
@@ -271,13 +271,13 @@ namespace HRManagement.Application.Contracts.Services
                 ExpiryDate = DateTime.Now.AddMinutes(5)
             };
 
-            await _refreshTokenRepository.CreateRefreshTokenAsync(refreshToken);
+            await _refreshTokenRepository.CreateRefreshTokenAsync(refreshTokenToCreate);
 
             return new AuthResult
             {
                 Success = true,
                 Token = token.Token,
-                RefreshToken = refreshToken.Token
+                RefreshToken = refreshTokenToCreate.Token
             };
         }
 

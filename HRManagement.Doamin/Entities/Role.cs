@@ -2,7 +2,7 @@
 {
     public class Role : BaseAuditableEntity
     {
-        public string RoleName { get; set; }
+        public string Name { get; set; }
 
         public ICollection<User> Users { get; set; }
     }

@@ -19,9 +19,9 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
             return await _dbContext.Roles.FindAsync(id);
         }
 
-        public async Task<Role> GetIdByRoleNameAsync(string rolename)
+        public async Task<Role> GetIdByRoleNameAsync(string name)
         {
-            return await _dbContext.Roles.FirstOrDefaultAsync(u => u.RoleName == rolename.ToLower());
+            return await _dbContext.Roles.FirstOrDefaultAsync(u => u.Name == name.ToLower());
         }
 
         public async Task<IEnumerable<Role>> GetRolesAsync()

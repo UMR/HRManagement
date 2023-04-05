@@ -55,6 +55,7 @@ namespace HRManagement.Persistence
             services.AddTransient<ITokenGenerator, TokenGenerator>();            
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             return services;
         }

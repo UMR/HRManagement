@@ -47,19 +47,19 @@ namespace HRManagement.Application.Contracts.Services
                 return response;
             }
 
-            var userRequest = await _userRepository.GetUserByIdAsync(userForUpdaterDto.Id);
+            var userToCreate = await _userRepository.GetUserByIdAsync(userForUpdaterDto.Id);
 
-            if (userRequest is null)
+            if (userToCreate is null)
             {
                 throw new NotFoundException(nameof(User), userForUpdaterDto.Id.ToString());
             }
 
-            _mapper.Map(userForUpdaterDto, userRequest);
-            await _userRepository.UpdateUserAsync(userRequest);
+            _mapper.Map(userForUpdaterDto, userToCreate);
+            await _userRepository.UpdateUserAsync(userToCreate);
 
             response.Success = true;
             response.Message = "Updating Successful";
-            response.Id = userRequest.Id;
+            response.Id = userToCreate.Id;
 
             return response;
         }
@@ -67,18 +67,18 @@ namespace HRManagement.Application.Contracts.Services
         public async Task<BaseCommandResponse> DeleteUser(int userId)
         {
             var response = new BaseCommandResponse();
-            var userRequest = await _userRepository.GetUserByIdAsync(userId);
+            var userToDelete = await _userRepository.GetUserByIdAsync(userId);
 
-            if (userRequest == null)
+            if (userToDelete == null)
             {
                 throw new NotFoundException(nameof(User), userId);
             }
 
-            await _userRepository.DeleteUserAsync(userRequest);
+            await _userRepository.DeleteUserAsync(userToDelete);
 
             response.Success = true;
             response.Message = "Deleting Successful";
-            response.Id = userRequest.Id;
+            response.Id = userToDelete.Id;
 
             return response;
         }        
