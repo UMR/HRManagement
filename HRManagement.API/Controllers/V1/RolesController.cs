@@ -1,5 +1,6 @@
 ﻿using HRManagement.Application.Contracts.Services;
 using HRManagement.Application.Dtos.Roles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagement.API.Controllers.V1
@@ -15,6 +16,7 @@ namespace HRManagement.API.Controllers.V1
             _roleService = roleService;
         }
 
+        [Authorize(policy:"Kaptan")]
         [HttpGet(Name = "GetRoles")]
         public async Task<ActionResult<List<RoleForListDto>>> GetRoles()
         {

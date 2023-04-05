@@ -1,17 +1,21 @@
 using HRManagement.API.Filters;
+using HRManagement.API.Handlers;
 using HRManagement.API.Services;
 using HRManagement.Application;
 using HRManagement.Application.Contracts;
 using HRManagement.Infrastructure.Persistence.Data;
 using HRManagement.Persistence;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 
 var CorsPolicy = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 
 builder.Services.AddCors(o =>
 {
@@ -21,15 +25,29 @@ builder.Services.AddCors(o =>
         .AllowAnyHeader());
 });
 
-builder.Services.AddControllers(config => {
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Kaptan",
+        policy => policy.Requirements.Add(new PermissionRequirement("Kaptan")));
+    //foreach (var permission in context.Permissions)
+    //{
+    //options.AddPolicy("Kaptan",
+    //policy => policy.Requirements.Add(new PermissionRequirement("Kaptan")));
+    //}
+});
+
+builder.Services.AddControllers(config =>
+{
     config.Filters.Add<ApiExceptionFilterAttribute>();
 });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
-{    
+{
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 });
+
+
 
 var app = builder.Build();
 
@@ -43,6 +61,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(CorsPolicy);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
