@@ -1,9 +1,8 @@
 using HRManagement.API.Filters;
-using HRManagement.API.Handlers;
+using HRManagement.API.Permission;
 using HRManagement.API.Services;
 using HRManagement.Application;
 using HRManagement.Application.Contracts;
-using HRManagement.Application.Contracts.Services;
 using HRManagement.Infrastructure.Persistence.Data;
 using HRManagement.Persistence;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +14,8 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
-builder.Services.AddScoped<IAuthorizationHandler, PermissionHandler>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
 builder.Services.AddCors(o =>
 {
@@ -25,16 +25,16 @@ builder.Services.AddCors(o =>
         .AllowAnyHeader());
 });
 
-var scope = builder.Services.BuildServiceProvider().CreateScope();
-var permissionService = scope.ServiceProvider.GetService<IPermissionService>();
+//var scope = builder.Services.BuildServiceProvider().CreateScope();
+//var permissionService = scope.ServiceProvider.GetService<IPermissionService>();
 
-builder.Services.AddAuthorization(async options =>
-{
-    foreach (var permission in await permissionService.GetPermissionsAsync())
-    {
-        options.AddPolicy(permission.Name, policy => policy.Requirements.Add(new PermissionRequirement(permission.Name)));
-    }
-});
+//builder.Services.AddAuthorization(async options =>
+//{
+//    foreach (var permission in await permissionService.GetPermissionsAsync())
+//    {
+//        options.AddPolicy(permission.Name, policy => policy.Requirements.Add(new PermissionRequirement(permission.Name)));
+//    }
+//});
 
 builder.Services.AddControllers(config =>
 {
