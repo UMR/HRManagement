@@ -54,8 +54,9 @@ namespace HRManagement.Persistence
             services.AddTransient<IPasswordHasher, PasswordHasher>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();            
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
 
             return services;
         }

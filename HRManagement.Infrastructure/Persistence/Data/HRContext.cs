@@ -17,11 +17,11 @@ namespace HRManagement.Infrastructure.Persistence.Data
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
+
         public DbSet<User> Users { get; set; }
-
         public DbSet<Role> Roles { get; set; }
-
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

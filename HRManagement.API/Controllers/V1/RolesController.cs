@@ -15,8 +15,7 @@ namespace HRManagement.API.Controllers.V1
         {
             _roleService = roleService;
         }
-
-        [Authorize(policy:"Kaptan")]
+        
         [HttpGet(Name = "GetRoles")]
         public async Task<ActionResult<List<RoleForListDto>>> GetRoles()
         {

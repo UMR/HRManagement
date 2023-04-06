@@ -7,9 +7,9 @@ namespace HRManagement.Domain.Entities
     {  
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public string? Token { get; set; } 
+        public string Token { get; set; } 
 
-        public string? JwtId { get; set; } 
+        public string JwtId { get; set; } 
 
         public DateTime CreatedDate { get; set; }
 
@@ -22,6 +22,6 @@ namespace HRManagement.Domain.Entities
         public int UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public User? User { get; set; }
+        public User User { get; set; }
     }
 }

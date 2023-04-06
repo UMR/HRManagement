@@ -6,7 +6,6 @@ using HRManagement.Application.Contracts;
 using HRManagement.Infrastructure.Persistence.Data;
 using HRManagement.Persistence;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.DependencyInjection;
 
 var CorsPolicy = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +14,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+//builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
 builder.Services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 
 builder.Services.AddCors(o =>
@@ -27,13 +27,13 @@ builder.Services.AddCors(o =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Kaptan",
-        policy => policy.Requirements.Add(new PermissionRequirement("Kaptan")));
-    //foreach (var permission in context.Permissions)
-    //{
-    //options.AddPolicy("Kaptan",
-    //policy => policy.Requirements.Add(new PermissionRequirement("Kaptan")));
-    //}
+    options.AddPolicy("AuthorizationPolicy",
+        policy => policy.Requirements.Add(new PermissionRequirement("role:read")));
+    ////foreach (var permission in context.Permissions)
+    ////{
+    ////options.AddPolicy("Kaptan",
+    ////policy => policy.Requirements.Add(new PermissionRequirement("Kaptan")));
+    ////}
 });
 
 builder.Services.AddControllers(config =>

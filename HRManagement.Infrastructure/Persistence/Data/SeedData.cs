@@ -1,7 +1,5 @@
 ﻿using HRManagement.Application.Contracts;
-using HRManagement.Application.Dtos.Identities;
 using HRManagement.Domain.Entities;
-using HRManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -38,6 +36,20 @@ namespace HRManagement.Infrastructure.Persistence.Data
                 };
 
                 context.Users.AddRange(orders);
+                context.SaveChanges();
+            }
+
+            if (!context.Permissions.Any())
+            {
+                var permissions = new List<Permission>()
+                {
+                    new Permission { Name = "role:read"},
+                    new Permission { Name = "role:create"},
+                    new Permission { Name = "role:update"},
+                    new Permission { Name = "role:delete"}                    
+                };
+
+                context.Permissions.AddRange(permissions);
                 context.SaveChanges();
             }
         }
