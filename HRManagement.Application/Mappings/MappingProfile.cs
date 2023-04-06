@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HRManagement.Application.Dtos.Permissions;
 using HRManagement.Application.Dtos.Roles;
 using HRManagement.Application.Dtos.Users;
 using HRManagement.Domain.Entities;
@@ -15,6 +16,9 @@ namespace HRManagement.Application.Mappings
             CreateMap<Role, RoleForListDto>().ReverseMap();
             CreateMap<Role, RoleForCreateDto>().ReverseMap();
             CreateMap<Role, RoleForUpdateDto>().ReverseMap();
+            CreateMap<Permission, PermissionForListDto>().ReverseMap();
+            CreateMap<Permission, PermissionForCreateDto>().ReverseMap();
+            CreateMap<Permission, PermissionForUpdateDto>().ReverseMap();
         }
     }
 }

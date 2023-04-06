@@ -15,19 +15,22 @@ namespace HRManagement.API.Controllers.V1
         {
             _roleService = roleService;
         }
-        
+
+        [Authorize(policy: "role:read")]
         [HttpGet(Name = "GetRoles")]
         public async Task<ActionResult<List<RoleForListDto>>> GetRoles()
         {
             return await _roleService.GetRolesAsync();
         }
 
+        [Authorize(policy: "role:read")]
         [HttpGet("{id}", Name = "GetRole")]
         public async Task<ActionResult<RoleForListDto>> GetRole(int id)
         {
             return await _roleService.GetRoleByIdAsync(id);
         }
 
+        [Authorize(policy: "role:create")]
         [HttpPost(Name = "CreateRole")]
         public async Task<ActionResult> CreateRole([FromBody] RoleForCreateDto roleForCreateDto)
         {
@@ -35,6 +38,7 @@ namespace HRManagement.API.Controllers.V1
             return Ok(response);
         }
 
+        [Authorize(policy: "role:update")]
         [HttpPut(Name = "UpdateRole")]
         public async Task<ActionResult> UpdateRole([FromBody] RoleForUpdateDto roleForUpdateDto)
         {
@@ -42,6 +46,7 @@ namespace HRManagement.API.Controllers.V1
             return Ok(response);
         }
 
+        [Authorize(policy: "role:delete")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteRole(int id)
         {

@@ -3,6 +3,7 @@ using HRManagement.API.Handlers;
 using HRManagement.API.Services;
 using HRManagement.Application;
 using HRManagement.Application.Contracts;
+using HRManagement.Application.Contracts.Services;
 using HRManagement.Infrastructure.Persistence.Data;
 using HRManagement.Persistence;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +15,6 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
-//builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
 builder.Services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 
 builder.Services.AddCors(o =>
@@ -25,15 +25,15 @@ builder.Services.AddCors(o =>
         .AllowAnyHeader());
 });
 
-builder.Services.AddAuthorization(options =>
+var scope = builder.Services.BuildServiceProvider().CreateScope();
+var permissionService = scope.ServiceProvider.GetService<IPermissionService>();
+
+builder.Services.AddAuthorization(async options =>
 {
-    options.AddPolicy("AuthorizationPolicy",
-        policy => policy.Requirements.Add(new PermissionRequirement("role:read")));
-    ////foreach (var permission in context.Permissions)
-    ////{
-    ////options.AddPolicy("Kaptan",
-    ////policy => policy.Requirements.Add(new PermissionRequirement("Kaptan")));
-    ////}
+    foreach (var permission in await permissionService.GetPermissionsAsync())
+    {
+        options.AddPolicy(permission.Name, policy => policy.Requirements.Add(new PermissionRequirement(permission.Name)));
+    }
 });
 
 builder.Services.AddControllers(config =>
@@ -46,8 +46,6 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 });
-
-
 
 var app = builder.Build();
 
