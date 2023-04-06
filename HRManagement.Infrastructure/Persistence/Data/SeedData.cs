@@ -43,10 +43,10 @@ namespace HRManagement.Infrastructure.Persistence.Data
             {
                 var permissions = new List<Permission>()
                 {
-                    new Permission { Name = "role:read"},
-                    new Permission { Name = "role:create"},
-                    new Permission { Name = "role:update"},
-                    new Permission { Name = "role:delete"}                    
+                    new Permission { Name = "Permission.Role.Read"},
+                    new Permission { Name = "Permission.Role.Read"},
+                    new Permission { Name = "Permission.Role.Read"},
+                    new Permission { Name = "Permission.Role.Read"}                    
                 };
 
                 context.Permissions.AddRange(permissions);
