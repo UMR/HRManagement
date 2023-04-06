@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using HRManagement.Application.Behaviours;
 using HRManagement.Application.Contracts.Services;
 using HRManagement.Application.Mappings;
 using MediatR;
@@ -21,6 +20,7 @@ namespace HRManagement.Application
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IPermissionService, PermissionService>();
 
             return services;
         }
