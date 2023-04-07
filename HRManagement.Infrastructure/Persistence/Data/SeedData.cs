@@ -1,5 +1,4 @@
 ﻿using HRManagement.Application.Contracts;
-using HRManagement.Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
