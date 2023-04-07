@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace HRManagement.Infrastructure.Persistence.Data
 {
-    public class HRDbContext: DbContext
+    public class HRDbContext : DbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
@@ -20,6 +20,7 @@ namespace HRManagement.Infrastructure.Persistence.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Permission> Permissions { get; set; }
 
@@ -70,7 +71,7 @@ namespace HRManagement.Infrastructure.Persistence.Data
             }
 
             return base.SaveChangesAsync(cancellationToken);
-        }        
+        }
     }
 }
 

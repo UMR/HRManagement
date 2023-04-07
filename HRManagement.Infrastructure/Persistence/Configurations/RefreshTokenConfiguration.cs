@@ -11,6 +11,7 @@
             builder.Property(r => r.Used).IsRequired();
             builder.Property(r => r.Invalidated).IsRequired();
             builder.Property(r => r.UserId).IsRequired();
+            builder.ToTable(nameof(RefreshToken));
         }
     }
 }
