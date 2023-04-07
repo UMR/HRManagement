@@ -1,21 +1,15 @@
+using HRManagement.API;
 using HRManagement.API.Filters;
-using HRManagement.API.Permission;
-using HRManagement.API.Services;
 using HRManagement.Application;
-using HRManagement.Application.Contracts;
 using HRManagement.Infrastructure.Persistence.Data;
 using HRManagement.Persistence;
-using Microsoft.AspNetCore.Authorization;
 
 var CorsPolicy = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
-builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
-builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+builder.Services.AddApplicationServices();
+builder.Services.AddApiServices();
 
 builder.Services.AddCors(o =>
 {

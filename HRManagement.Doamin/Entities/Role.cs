@@ -4,8 +4,13 @@
     {
         public string Name { get; set; }
 
+        public string NormalizedName { get; set; }
+
+        public string ConcurrencyStamp { get; set; }
+
         public ICollection<User> Users { get; set; }
 
-        public ICollection<Permission> Permissions { get; set; }
+        public ICollection<RoleClaim> RoleClaims { get; set; }
+
     }
 }
