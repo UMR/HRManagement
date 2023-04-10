@@ -12,6 +12,19 @@
         {
             context.Database.EnsureCreated();
 
+            if (!context.Roles.Any())
+            {
+                var roles = new List<Role>()
+                {
+                    new Role { Name = "Admin"},
+                    new Role { Name = "HR"},
+                    new Role { Name = "Employee"}
+                };
+
+                context.Roles.AddRange(roles);
+                context.SaveChanges();
+            }
+
             if (!context.Users.Any())
             {
                 byte[] passwordHash, passwordSalt;
@@ -22,12 +35,15 @@
                 {
                     new User
                     {
-                        Id = 1,
                         FirstName = "Captain",
                         LastName = "Black",
                         Email = "test@test.com",
                         PasswordHash=passwordHash,
-                        PasswordSalt=passwordSalt
+                        PasswordSalt=passwordSalt,
+                        UserRoles = new List<UserRole>()
+                        {
+                            new UserRole { UserId = 1, RoleId = 1 }                             
+                        }
                     }
                 };
 
@@ -39,13 +55,27 @@
             {
                 var permissions = new List<Permission>()
                 {
-                    new Permission { Id=1, Name = "Permission.Role.Read"},
-                    new Permission { Id=2, Name = "Permission.Role.Read"},
-                    new Permission { Id=3, Name = "Permission.Role.Read"},
-                    new Permission { Id=4, Name = "Permission.Role.Read"}
+                    new Permission { Name = "Permission.Role.Read"},
+                    new Permission { Name = "Permission.Role.Read"},
+                    new Permission { Name = "Permission.Role.Read"},
+                    new Permission { Name = "Permission.Role.Read"}
                 };
 
                 context.Permissions.AddRange(permissions);
+                context.SaveChanges();
+            }
+
+            if (!context.RolePermissions.Any())
+            {
+                var rolePermissions = new List<RolePermission>()
+                {
+                    new RolePermission { RoleId = 1, PermissionId = 1 },
+                    new RolePermission { RoleId = 1, PermissionId = 2 },
+                    new RolePermission { RoleId = 1, PermissionId = 3 },
+                    new RolePermission { RoleId = 1, PermissionId = 4 }
+                };
+
+                context.RolePermissions.AddRange(rolePermissions);
                 context.SaveChanges();
             }
         }

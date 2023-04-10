@@ -49,5 +49,22 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
             var result = await _dbContext.SaveChangesAsync();
             return result > 0 ? true : false;
         }
+
+        public async Task<bool> AssignRolesToUserAsync(int userId, int roleId)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var role = await _dbContext.Roles.FirstOrDefaultAsync(r => r.Id == roleId);
+
+            var userRoles = new List<UserRole>()
+            {
+                new UserRole() { Id = userId, RoleId = roleId },
+                new UserRole() { Id = userId, RoleId = roleId },
+            };
+
+            await _dbContext.UserRoles.AddRangeAsync(userRoles);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
