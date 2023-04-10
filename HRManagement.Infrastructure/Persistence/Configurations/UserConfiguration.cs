@@ -1,6 +1,6 @@
 ﻿namespace HRManagement.Infrastructure.Persistence.Configurations
 {
-    internal class UserConfiguration : BaseEntityConfiguration<User>
+    public class UserConfiguration : BaseEntityConfiguration<User>
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {

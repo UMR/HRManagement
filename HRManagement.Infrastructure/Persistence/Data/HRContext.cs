@@ -1,8 +1,4 @@
-﻿using HRManagement.Application.Contracts;
-using HRManagement.Domain.Common;
-using HRManagement.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 
 namespace HRManagement.Infrastructure.Persistence.Data
@@ -23,6 +19,7 @@ namespace HRManagement.Infrastructure.Persistence.Data
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

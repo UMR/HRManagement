@@ -1,6 +1,4 @@
-﻿using HRManagement.Application.Contracts;
-
-namespace HRManagement.Infrastructure.Services
+﻿namespace HRManagement.Infrastructure.Services
 {
     public class DateTimeService : IDateTime
     {

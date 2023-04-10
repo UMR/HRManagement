@@ -1,8 +1,4 @@
-﻿using HRManagement.Application.Contracts;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace HRManagement.Infrastructure.Persistence.Data
+﻿namespace HRManagement.Infrastructure.Persistence.Data
 {
     public class SeedData
     {
@@ -26,6 +22,7 @@ namespace HRManagement.Infrastructure.Persistence.Data
                 {
                     new User
                     {
+                        Id = 1,
                         FirstName = "Captain",
                         LastName = "Black",
                         Email = "test@test.com",
@@ -42,10 +39,10 @@ namespace HRManagement.Infrastructure.Persistence.Data
             {
                 var permissions = new List<Permission>()
                 {
-                    new Permission { Name = "Permission.Role.Read"},
-                    new Permission { Name = "Permission.Role.Read"},
-                    new Permission { Name = "Permission.Role.Read"},
-                    new Permission { Name = "Permission.Role.Read"}                    
+                    new Permission { Id=1, Name = "Permission.Role.Read"},
+                    new Permission { Id=2, Name = "Permission.Role.Read"},
+                    new Permission { Id=3, Name = "Permission.Role.Read"},
+                    new Permission { Id=4, Name = "Permission.Role.Read"}
                 };
 
                 context.Permissions.AddRange(permissions);

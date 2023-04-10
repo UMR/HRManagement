@@ -8,5 +8,7 @@
 
         public ICollection<RoleClaim> RoleClaims { get; set; }
 
+        public ICollection<RolePermission> RolePermissions { get; set; }
+
     }
 }

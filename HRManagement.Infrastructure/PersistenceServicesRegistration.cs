@@ -1,17 +1,4 @@
-﻿using HRManagement.Application.Contracts;
-using HRManagement.Application.Contracts.Persistence;
-using HRManagement.Application.Options;
-using HRManagement.Infrastructure.Persistence.Data;
-using HRManagement.Infrastructure.Persistence.Repositories;
-using HRManagement.Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-
-namespace HRManagement.Persistence
+﻿namespace HRManagement.Persistence
 {
     public static class ConfigureServices
     {

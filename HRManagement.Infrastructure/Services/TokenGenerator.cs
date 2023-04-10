@@ -1,13 +1,4 @@
-﻿using HRManagement.Application.Contracts;
-using HRManagement.Application.Dtos.Tokens;
-using HRManagement.Application.Options;
-using HRManagement.Domain.Entities;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
-namespace HRManagement.Infrastructure.Services
+﻿namespace HRManagement.Infrastructure.Services
 {
     public class TokenGenerator : ITokenGenerator
     {

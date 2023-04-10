@@ -1,8 +1,8 @@
 ﻿namespace HRManagement.Infrastructure.Persistence.Configurations
 {
-    public class UserRoleConfiguration : BaseEntityConfiguration<UserRole>
+    public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
     {
-        public override void Configure(EntityTypeBuilder<UserRole> builder)
+        public void Configure(EntityTypeBuilder<UserRole> builder)
         {
             builder.Property(o => o.UserId).IsRequired();
             builder.Property(o => o.RoleId).IsRequired();

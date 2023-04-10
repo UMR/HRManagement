@@ -1,17 +1,4 @@
-﻿using AutoMapper;
-using HRManagement.Application.Contracts;
-using HRManagement.Application.Contracts.Persistence;
-using HRManagement.Application.Dtos.Identities;
-using HRManagement.Application.Dtos.Users;
-using HRManagement.Domain.Entities;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
-namespace HRManagement.Infrastructure.Services
+﻿namespace HRManagement.Infrastructure.Services
 {
     public class IdentityService 
     {
