@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace HRManagement.Domain.Entities
+﻿namespace HRManagement.Domain.Entities
 {
     public class RefreshToken
     {  

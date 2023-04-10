@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Reflection;
-
-namespace HRManagement.Infrastructure.Persistence.Data
+﻿namespace HRManagement.Infrastructure.Persistence.Data
 {
     public class HRDbContext : DbContext
     {
