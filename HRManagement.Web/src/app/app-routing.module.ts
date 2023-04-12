@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AssignRoleComponent } from './assign-role/assign-role.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
     path: 'change-password',
     component: ChangePasswordComponent
   },
+  {
+    path: 'assign-role',
+    component: AssignRoleComponent
+  }, 
   {
     path: 'user-information',
     component: UserInformationComponent

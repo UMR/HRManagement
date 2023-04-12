@@ -12,4 +12,10 @@
     <None Remove="node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="src\app\common\models\role.ts">
+      <SubType>Code</SubType>
+    </None>
+  </ItemGroup>
+
 </Project>

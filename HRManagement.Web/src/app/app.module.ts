@@ -33,6 +33,8 @@ import { SendMailComponent } from './send-mail/send-mail.component';
 import { RegistrationService } from './registration/registration.service';
 import { LoginService } from './login/login.service';
 import { TokenInterceptorService } from './common/token-interceptor.service';
+import { AssignRoleComponent } from './assign-role/assign-role.component';
+import { AssignRoleService } from './assign-role/assign-role.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { TokenInterceptorService } from './common/token-interceptor.service';
     UserInformationComponent,
     LeaveApplicationComponent,
     HvncareersComponent,
-    SendMailComponent
+    SendMailComponent,
+    AssignRoleComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ import { TokenInterceptorService } from './common/token-interceptor.service';
     FileService,
     RegistrationService,
     LoginService,
+    AssignRoleService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
