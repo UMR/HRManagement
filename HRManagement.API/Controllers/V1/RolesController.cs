@@ -54,7 +54,7 @@ namespace HRManagement.API.Controllers.V1
             return Ok(response);
         }
         
-        [Authorize(policy: "Permission.Role.Create")]        
+        [Authorize(policy: "Permission.Role.AssignRolesToUser")]        
         [HttpPost("AssignRolesToUser")]
         public async Task<ActionResult> AssignRolesToUser(AssignRolesToUserDto assignRolesToUserDto)
         {

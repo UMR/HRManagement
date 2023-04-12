@@ -15,26 +15,26 @@ namespace HRManagement.API.Controllers.V1
             _userService = userService;    
         }
 
-        [HttpGet(Name = "GetUsers")]
+        [HttpGet("GetUsers")]
         public async Task<ActionResult<List<UserForListDto>>> GetUsers()
         {
             return await _userService.GetUsersAsync();
         }
 
-        [HttpGet("{id}", Name = "GetUser")]
+        [HttpGet("GetUser/{id}")]
         public async Task<ActionResult<UserForListDto>> GetUser(int id)
         {
             return await _userService.GetUserByIdAsync(id);
         }        
 
-        [HttpPut(Name = "UpdateUser")]
+        [HttpPut("UpdateUser")]
         public async Task<ActionResult> UpdateUser([FromBody] UserForUpdaterDto updateUserDto)
         {
             var response = await _userService.UpdateUser(updateUserDto);
             return Ok(response);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteUser/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
             var response = await _userService.DeleteUser(id);
