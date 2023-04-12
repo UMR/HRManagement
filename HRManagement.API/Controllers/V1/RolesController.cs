@@ -17,21 +17,21 @@ namespace HRManagement.API.Controllers.V1
         }
 
         [Authorize(policy: "Permission.Role.View")]
-        [HttpGet(Name = "GetRoles")]
+        [HttpGet("GetRoles")]
         public async Task<ActionResult<List<RoleForListDto>>> GetRoles()
         {
             return await _roleService.GetRolesAsync();
         }
 
         [Authorize(policy: "Permission.Role.View")]
-        [HttpGet("{id}", Name = "GetRole")]
+        [HttpGet("GetRole/{id}")]
         public async Task<ActionResult<RoleForListDto>> GetRole(int id)
         {
             return await _roleService.GetRoleByIdAsync(id);
         }
 
         [Authorize(policy: "Permission.Role.Create")]
-        [HttpPost(Name = "CreateRole")]
+        [HttpPost("CreateRole")]
         public async Task<ActionResult> CreateRole([FromBody] RoleForCreateDto roleForCreateDto)
         {
             var response = await _roleService.CreateRole(roleForCreateDto);
@@ -39,7 +39,7 @@ namespace HRManagement.API.Controllers.V1
         }
 
         [Authorize(policy: "Permission.Role.Update")]
-        [HttpPut(Name = "UpdateRole")]
+        [HttpPut("UpdateRole")]
         public async Task<ActionResult> UpdateRole([FromBody] RoleForUpdateDto roleForUpdateDto)
         {
             var response = await _roleService.UpdateRole(roleForUpdateDto);
@@ -47,10 +47,18 @@ namespace HRManagement.API.Controllers.V1
         }
 
         [Authorize(policy: "Permission.Role.Delete")]
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteRole/{id}")]
         public async Task<ActionResult> DeleteRole(int id)
         {
             var response = await _roleService.DeleteRole(id);
+            return Ok(response);
+        }
+        
+        [Authorize(policy: "Permission.Role.Create")]        
+        [HttpPost("AssignRolesToUser")]
+        public async Task<ActionResult> AssignRolesToUser(AssignRolesToUserDto assignRolesToUserDto)
+        {
+            var response = await _roleService.AssignRolesToUserAsync(assignRolesToUserDto);
             return Ok(response);
         }
     }

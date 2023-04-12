@@ -10,5 +10,6 @@ namespace HRManagement.Application.Contracts.Persistence
         Task<Role> GetRoleByIdAsync(int id);
         Task<IEnumerable<Role>> GetRolesAsync();
         Task<bool> UpdateRoleAsync(Role role);
+        Task<bool> AssignRolesToUserAsync(int userId, int[] roleIds);
     }
 }

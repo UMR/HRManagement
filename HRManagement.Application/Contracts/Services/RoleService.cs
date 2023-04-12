@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Dtos.Roles;
 using HRManagement.Application.Exceptions;
@@ -56,7 +57,7 @@ namespace HRManagement.Application.Contracts.Services
             await _roleRepository.CreateRoleAsync(roleToCreate);
 
             response.Success = true;
-            response.Message = "Updating Successful";
+            response.Message = "Creating Successful";
             response.Id = roleToCreate.Id;
 
             return response;
@@ -108,6 +109,31 @@ namespace HRManagement.Application.Contracts.Services
             response.Success = true;
             response.Message = "Deleting Successful";
             response.Id = roleToDelete.Id;
+
+            return response;
+        }
+
+        public async Task<BaseCommandResponse> AssignRolesToUserAsync(AssignRolesToUserDto assignRolesToUserDto)
+        {
+            var response = new BaseCommandResponse();
+            var validator = new AssignRolesToUserDtoValidator();
+            var validationResult = await validator.ValidateAsync(assignRolesToUserDto);
+
+            if (validationResult.IsValid == false)
+            {
+                response.Success = false;
+                response.Message = "Creating Failed";
+                response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return response;
+            }
+
+            var result = await _roleRepository.AssignRolesToUserAsync(assignRolesToUserDto.UserId, assignRolesToUserDto.RoleIds.ToArray());
+
+            if (result)
+            {
+                response.Success = true;
+                response.Message = "Assign Roles to User Successful";
+            }
 
             return response;
         }

@@ -10,5 +10,6 @@ namespace HRManagement.Application.Contracts.Services
         Task<RoleForListDto> GetRoleByIdAsync(int id);
         Task<List<RoleForListDto>> GetRolesAsync();
         Task<BaseCommandResponse> UpdateRole(RoleForUpdateDto roleForUpdateDto);
+        Task<BaseCommandResponse> AssignRolesToUserAsync(AssignRolesToUserDto assignRolesToUserDto);
     }
 }

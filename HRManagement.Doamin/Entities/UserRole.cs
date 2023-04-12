@@ -1,6 +1,6 @@
 ﻿namespace HRManagement.Domain.Entities
 {
-    public class UserRole:BaseEntity
+    public class UserRole
     {
         public int UserId { get; set; }
         public User User { get; set; }

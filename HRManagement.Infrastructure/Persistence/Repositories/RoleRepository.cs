@@ -50,21 +50,20 @@ namespace HRManagement.Infrastructure.Persistence.Repositories
             return result > 0 ? true : false;
         }
 
-        public async Task<bool> AssignRolesToUserAsync(int userId, int roleId)
+        public async Task<bool> AssignRolesToUserAsync(int userId, int[] roleIds)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-            var role = await _dbContext.Roles.FirstOrDefaultAsync(r => r.Id == roleId);
+            var userRoles = new List<UserRole>();            
 
-            var userRoles = new List<UserRole>()
+            foreach (var roleId in roleIds)
             {
-                new UserRole() { Id = userId, RoleId = roleId },
-                new UserRole() { Id = userId, RoleId = roleId },
-            };
+                var userRole = new UserRole() { UserId = userId, RoleId = roleId};
+                userRoles.Add(userRole);
+            }
 
             await _dbContext.UserRoles.AddRangeAsync(userRoles);
-            await _dbContext.SaveChangesAsync();
+            var result = await _dbContext.SaveChangesAsync();
 
-            return true;
+            return result > 0 ? true : false;
         }
     }
 }
