@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Dtos.Permissions;
+using HRManagement.Application.Dtos.Roles;
 using HRManagement.Application.Exceptions;
 using HRManagement.Application.Validators.Permission;
+using HRManagement.Application.Validators.Role;
 using HRManagement.Application.Wrapper;
 using HRManagement.Domain.Entities;
 
@@ -107,6 +110,31 @@ namespace HRManagement.Application.Contracts.Services
             response.Success = true;
             response.Message = "Deleting Successful";
             response.Id = permissionToDelete.Id;
+
+            return response;
+        }
+
+        public async Task<BaseCommandResponse> AssignPermissionsToRoleAsync(AssignPermissionsToRoleDto assignPermissionsToRoleDto)
+        {
+            var response = new BaseCommandResponse();
+            var validator = new AssignPermissionsToRoleDtoValidator();
+            var validationResult = await validator.ValidateAsync(assignPermissionsToRoleDto);
+
+            if (validationResult.IsValid == false)
+            {
+                response.Success = false;
+                response.Message = "Creating Failed";
+                response.Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return response;
+            }
+
+            var result = await _permissionRepository.AssignPermissionsToRoleAsync(assignPermissionsToRoleDto.RoleId, assignPermissionsToRoleDto.PermissionIds.ToArray());
+
+            if (result)
+            {
+                response.Success = true;
+                response.Message = "Assign Roles to User Successful";
+            }
 
             return response;
         }

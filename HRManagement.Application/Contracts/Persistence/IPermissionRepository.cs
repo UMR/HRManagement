@@ -9,5 +9,6 @@ namespace HRManagement.Application.Contracts.Persistence
         Task<Permission> GetPermissionByIdAsync(int id);
         Task<IEnumerable<Permission>> GetPermissionsAsync();
         Task<bool> UpdatePermissionAsync(Permission permission);
+        Task<bool> AssignPermissionsToRoleAsync(int roleId, int[] permissionIds);
     }
 }

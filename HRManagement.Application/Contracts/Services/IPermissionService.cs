@@ -10,5 +10,6 @@ namespace HRManagement.Application.Contracts.Services
         Task<PermissionForListDto> GetPermissionByIdAsync(int id);
         Task<List<PermissionForListDto>> GetPermissionsAsync();
         Task<BaseCommandResponse> UpdatePermission(PermissionForUpdateDto permissionForUpdateDto);
+        Task<BaseCommandResponse> AssignPermissionsToRoleAsync(AssignPermissionsToRoleDto assignPermissionsToRoleDto);
     }
 }

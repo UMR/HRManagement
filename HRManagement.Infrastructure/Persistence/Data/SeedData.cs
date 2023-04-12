@@ -56,9 +56,9 @@
                 var permissions = new List<Permission>()
                 {
                     new Permission { Name = "Permission.Role.Read"},
-                    new Permission { Name = "Permission.Role.Read"},
-                    new Permission { Name = "Permission.Role.Read"},
-                    new Permission { Name = "Permission.Role.Read"}
+                    new Permission { Name = "Permission.Role.Create"},
+                    new Permission { Name = "Permission.Role.Update"},
+                    new Permission { Name = "Permission.Role.Delete"}
                 };
 
                 context.Permissions.AddRange(permissions);
@@ -70,8 +70,8 @@
                 var rolePermissions = new List<RolePermission>()
                 {
                     new RolePermission { RoleId = 1, PermissionId = 1 },
-                    new RolePermission { RoleId = 1, PermissionId = 2 },
-                    new RolePermission { RoleId = 1, PermissionId = 3 },
+                    new RolePermission { RoleId = 2, PermissionId = 2 },
+                    new RolePermission { RoleId = 3, PermissionId = 3 },
                     new RolePermission { RoleId = 1, PermissionId = 4 }
                 };
 
