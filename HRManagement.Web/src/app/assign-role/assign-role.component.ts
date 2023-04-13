@@ -14,6 +14,8 @@ import { AssignRoleService } from './assign-role.service';
 })
 export class AssignRoleComponent implements OnInit {
   isLoading: boolean = true;
+  selected = '';
+  public roleAssignForm: any;
   public userList: User[] = [];
   public roleList: Role[] = [];
   public assignRolesModel: AssignRolesModel = {
@@ -27,15 +29,18 @@ export class AssignRoleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.roleAssignForm = this.formBuilder.group({
+      user: new FormControl(null, [Validators.required]),
+      role: new FormControl(null, [Validators.required])
+    });
 
     this.assignRoleService.getUsers()
       .subscribe(data => {
         this.userList = data as any;
-        this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Registration Successful', detail: '' });
       },
         err => {
           this.isLoading = false;
-          this.messageService.add({ key: 'toastKey1', severity: 'error', summary: 'Registration failed', detail: '' });
+          this.messageService.add({ key: 'toastKey1', severity: 'error', summary: 'Get users failed', detail: '' });
         },
         () => {
           this.isLoading = false;
@@ -45,11 +50,10 @@ export class AssignRoleComponent implements OnInit {
     this.assignRoleService.getRoles()
       .subscribe(data => {
         this.roleList = data as any;
-        this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'Registration Successful', detail: '' });
       },
         err => {
           this.isLoading = false;
-          this.messageService.add({ key: 'toastKey1', severity: 'error', summary: 'Registration failed', detail: '' });
+          this.messageService.add({ key: 'toastKey1', severity: 'error', summary: 'Get roles failed', detail: '' });
         },
         () => {
           this.isLoading = false;
@@ -57,12 +61,10 @@ export class AssignRoleComponent implements OnInit {
   }
 
   onRadioChange(user: any) {
-    console.log(user);
     this.assignRolesModel.UserId = user.id;
   }
 
   onCheckboxChange(role: any) {
-    console.log(role);
     if (this.assignRolesModel.RoleIds.includes(role.id)) {
       const index = this.assignRolesModel.RoleIds.indexOf(role.id);
       if (index > -1) {
@@ -74,7 +76,7 @@ export class AssignRoleComponent implements OnInit {
     }
   }
 
-  submit() {
+  submitForm() {
     if (!this.assignRolesModel.UserId || this.assignRolesModel.UserId == 0) {
       this.messageService.add({ key: 'toastKey1', severity: 'warning', summary: 'Please select an user', detail: '' });
     }
@@ -84,7 +86,7 @@ export class AssignRoleComponent implements OnInit {
     else {
       this.assignRoleService.assignRolesToUser(this.assignRolesModel)
         .subscribe(data => {
-          //console.log(data);
+          this.roleAssignForm.reset();
           this.messageService.add({ key: 'toastKey1', severity: 'success', summary: 'User role assign Successful', detail: '' });
         },
           err => {
