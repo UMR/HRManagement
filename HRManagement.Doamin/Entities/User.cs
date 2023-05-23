@@ -12,6 +12,6 @@ public class User : BaseAuditableEntity
 
     public byte[] PasswordSalt { get; set; }
 
-    public ICollection<UserRole> UserRoles { get; set; }
+    public ICollection<UserRole> Roles { get; set; }
 
 }

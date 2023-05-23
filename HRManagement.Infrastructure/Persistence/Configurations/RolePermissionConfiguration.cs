@@ -11,11 +11,11 @@
             builder.HasKey(ur => new { ur.PermissionId, ur.RoleId });
 
             builder.HasOne(bc => bc.Role)
-                .WithMany(b => b.RolePermissions)
+                .WithMany(b => b.Permissions)
                 .HasForeignKey(bc => bc.RoleId);
 
             builder.HasOne(bc => bc.Permission)
-                .WithMany(c => c.RolePermissions)
+                .WithMany(c => c.Roles)
                 .HasForeignKey(bc => bc.PermissionId);
         }
 

@@ -4,11 +4,11 @@
     {
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<UserRole> Users { get; set; }
 
         public ICollection<RoleClaim> RoleClaims { get; set; }
 
-        public ICollection<RolePermission> RolePermissions { get; set; }
+        public ICollection<RolePermission> Permissions { get; set; }
 
     }
 }

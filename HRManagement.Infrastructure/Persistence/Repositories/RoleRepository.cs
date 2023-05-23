@@ -1,9 +1,4 @@
-﻿using HRManagement.Application.Contracts.Persistence;
-using HRManagement.Domain.Entities;
-using HRManagement.Infrastructure.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
-
-namespace HRManagement.Infrastructure.Persistence.Repositories
+﻿namespace HRManagement.Infrastructure.Persistence.Repositories
 {
     public class RoleRepository : IRoleRepository
     {

@@ -40,7 +40,7 @@
                         Email = "test@test.com",
                         PasswordHash=passwordHash,
                         PasswordSalt=passwordSalt,
-                        UserRoles = new List<UserRole>()
+                        Roles = new List<UserRole>()
                         {
                             new UserRole { UserId = 1, RoleId = 1 }                             
                         }
@@ -71,8 +71,7 @@
                 {
                     new RolePermission { RoleId = 1, PermissionId = 1 },
                     new RolePermission { RoleId = 2, PermissionId = 2 },
-                    new RolePermission { RoleId = 3, PermissionId = 3 },
-                    new RolePermission { RoleId = 1, PermissionId = 4 }
+                    new RolePermission { RoleId = 3, PermissionId = 3 },                    
                 };
 
                 context.RolePermissions.AddRange(rolePermissions);

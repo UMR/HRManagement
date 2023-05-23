@@ -13,18 +13,21 @@ namespace HRManagement.Application.Contracts.Services
     public class IdentityService : IIdentityService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly ITokenGenerator _tokenGenerator;
         private readonly TokenValidationParameters _tokenValidationParameters;
 
         public IdentityService(IUserRepository userRepository,
+            IRoleRepository roleRepository,
             IRefreshTokenRepository refreshTokenRepository,
             IPasswordHasher passwordHasher,
             ITokenGenerator tokenGenerator,
             TokenValidationParameters tokenValidationParameters)
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
             _refreshTokenRepository = refreshTokenRepository;
             _passwordHasher = passwordHasher;
             _tokenGenerator = tokenGenerator;
@@ -70,6 +73,8 @@ namespace HRManagement.Application.Contracts.Services
                     Errors = new[] { "User/password combination is wrong" }
                 };
             }
+
+            //var roles = _roleRepository.get
 
             var token = _tokenGenerator.GenerateToken(userRequest);
 

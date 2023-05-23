@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
 
-        public ICollection<RolePermission> RolePermissions { get; set; }
+        public ICollection<RolePermission> Roles { get; set; }
 
     }
 }
